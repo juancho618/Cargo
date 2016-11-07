@@ -79,6 +79,8 @@
     <EntitySetMapping Name="Branch">
       <EntityTypeMapping TypeName="CargoDBModel.Branch">
         <MappingFragment StoreEntitySet="Branch">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="BranchID" ColumnName="BranchID" />
           <ScalarProperty Name="BranchName" ColumnName="BranchName" />
         </MappingFragment>
@@ -87,6 +89,8 @@
     <EntitySetMapping Name="Comment">
       <EntityTypeMapping TypeName="CargoDBModel.Comment">
         <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="CommentId" ColumnName="CommentId" />
           <ScalarProperty Name="Fk_Post" ColumnName="Fk_Post" />
           <ScalarProperty Name="Fk_User" ColumnName="Fk_User" />
@@ -99,6 +103,8 @@
     <EntitySetMapping Name="CompanyAccount">
       <EntityTypeMapping TypeName="CargoDBModel.CompanyAccount">
         <MappingFragment StoreEntitySet="CompanyAccount">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="CompanyAccountID" ColumnName="CompanyAccountID" />
           <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
           <ScalarProperty Name="Adress" ColumnName="Adress" />
@@ -118,6 +124,8 @@
     <EntitySetMapping Name="Condition">
       <EntityTypeMapping TypeName="CargoDBModel.Condition">
         <MappingFragment StoreEntitySet="Condition">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="ConditionID" ColumnName="ConditionID" />
           <ScalarProperty Name="ConditionName" ColumnName="ConditionName" />
         </MappingFragment>
@@ -126,6 +134,8 @@
     <EntitySetMapping Name="Country">
       <EntityTypeMapping TypeName="CargoDBModel.Country">
         <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="CountryID" ColumnName="CountryID" />
           <ScalarProperty Name="CountryName" ColumnName="CountryName" />
         </MappingFragment>
@@ -134,6 +144,7 @@
     <EntitySetMapping Name="Courier">
       <EntityTypeMapping TypeName="CargoDBModel.Courier">
         <MappingFragment StoreEntitySet="Courier">
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="CourierID" ColumnName="CourierID" />
           <ScalarProperty Name="Fk_WarehouseID" ColumnName="Fk_WarehouseID" />
           <ScalarProperty Name="Length" ColumnName="Length" />
@@ -154,6 +165,8 @@
     <EntitySetMapping Name="CurrentWarehouseCodeNumber">
       <EntityTypeMapping TypeName="CargoDBModel.CurrentWarehouseCodeNumber">
         <MappingFragment StoreEntitySet="CurrentWarehouseCodeNumber">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="WarehHouseID" ColumnName="WarehHouseID" />
           <ScalarProperty Name="WarehouseCodeNumber" ColumnName="WarehouseCodeNumber" />
         </MappingFragment>
@@ -162,6 +175,7 @@
     <EntitySetMapping Name="DeliveryCompany">
       <EntityTypeMapping TypeName="CargoDBModel.DeliveryCompany">
         <MappingFragment StoreEntitySet="DeliveryCompany">
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
           <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
           <ScalarProperty Name="Deleted" ColumnName="Deleted" />
@@ -171,6 +185,8 @@
     <EntitySetMapping Name="Destination">
       <EntityTypeMapping TypeName="CargoDBModel.Destination">
         <MappingFragment StoreEntitySet="Destination">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="DestinationId" ColumnName="DestinationId" />
           <ScalarProperty Name="DestinationName" ColumnName="DestinationName" />
         </MappingFragment>
@@ -179,6 +195,8 @@
     <EntitySetMapping Name="Notification">
       <EntityTypeMapping TypeName="CargoDBModel.Notification">
         <MappingFragment StoreEntitySet="Notification">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Activate" ColumnName="Activate" />
           <ScalarProperty Name="NotificationID" ColumnName="NotificationID" />
           <ScalarProperty Name="NotificationName" ColumnName="NotificationName" />
         </MappingFragment>
@@ -187,6 +205,8 @@
     <EntitySetMapping Name="NotificationAccountRelation">
       <EntityTypeMapping TypeName="CargoDBModel.NotificationAccountRelation">
         <MappingFragment StoreEntitySet="NotificationAccountRelation">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="NotificationAccountRelation1" ColumnName="NotificationAccountRelation" />
           <ScalarProperty Name="Fk_Account" ColumnName="Fk_Account" />
           <ScalarProperty Name="Fk_Notification" ColumnName="Fk_Notification" />
@@ -196,6 +216,8 @@
     <EntitySetMapping Name="Origin">
       <EntityTypeMapping TypeName="CargoDBModel.Origin">
         <MappingFragment StoreEntitySet="Origin">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="OriginId" ColumnName="OriginId" />
           <ScalarProperty Name="OriginName" ColumnName="OriginName" />
         </MappingFragment>
@@ -204,6 +226,8 @@
     <EntitySetMapping Name="Post">
       <EntityTypeMapping TypeName="CargoDBModel.Post">
         <MappingFragment StoreEntitySet="Post">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="PostID" ColumnName="PostID" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="PubDate" ColumnName="PubDate" />
@@ -214,6 +238,8 @@
     <EntitySetMapping Name="PostUser">
       <EntityTypeMapping TypeName="CargoDBModel.PostUser">
         <MappingFragment StoreEntitySet="PostUser">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="PostUserID" ColumnName="PostUserID" />
           <ScalarProperty Name="Fk_Post" ColumnName="Fk_Post" />
           <ScalarProperty Name="Fk_User" ColumnName="Fk_User" />
@@ -223,6 +249,8 @@
     <EntitySetMapping Name="UnitType">
       <EntityTypeMapping TypeName="CargoDBModel.UnitType">
         <MappingFragment StoreEntitySet="UnitType">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="UnitTypeId" ColumnName="UnitTypeId" />
           <ScalarProperty Name="UnitName" ColumnName="UnitName" />
         </MappingFragment>
@@ -231,6 +259,8 @@
     <EntitySetMapping Name="Warehouse">
       <EntityTypeMapping TypeName="CargoDBModel.Warehouse">
         <MappingFragment StoreEntitySet="Warehouse">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
           <ScalarProperty Name="NumberCode" ColumnName="NumberCode" />
           <ScalarProperty Name="Fk_BranchID" ColumnName="Fk_BranchID" />
@@ -249,6 +279,8 @@
     <EntitySetMapping Name="WarehouseTypeRelation">
       <EntityTypeMapping TypeName="CargoDBModel.WarehouseTypeRelation">
         <MappingFragment StoreEntitySet="WarehouseTypeRelation">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="WarehouseTypeRelationId" ColumnName="WarehouseTypeRelationId" />
           <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
           <ScalarProperty Name="TypeId" ColumnName="TypeId" />
@@ -258,6 +290,8 @@
     <EntitySetMapping Name="WarehouseTypes">
       <EntityTypeMapping TypeName="CargoDBModel.WarehouseTypes">
         <MappingFragment StoreEntitySet="WarehouseTypes">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="TypeId" ColumnName="TypeId" />
           <ScalarProperty Name="TypeName" ColumnName="TypeName" />
         </MappingFragment>

@@ -8,6 +8,7 @@ using Cargo.Helper;
 using Microsoft.AspNet.Identity;
 using System.IO;
 using System.Data.Entity;
+using Cargo.Domain.Helpers.IDGenerators;
 
 
 namespace Cargo.Controllers
@@ -21,12 +22,12 @@ namespace Cargo.Controllers
         {
             return View();
         }
-        
+
         public ActionResult Post(string id)
         {
             return View(new { id = id });
         }
-        
+
         //Method to post files for every post
         public JsonResult PostFile(HttpPostedFileBase file, string id, string idComment)
         {
@@ -36,7 +37,7 @@ namespace Cargo.Controllers
             if (Directory.Exists(Server.MapPath("~/Files/Post/" + postId + "/")) == false)
                 Directory.CreateDirectory(Server.MapPath("~/Files/Img/" + postId + "/"));
             string filename = name;
-            file.SaveAs(Server.MapPath("~/Files/Img/" + postId + "/") + filename +  ext);
+            file.SaveAs(Server.MapPath("~/Files/Img/" + postId + "/") + filename + ext);
 
             Comment comment = db.Comments.Find(idComment);
             comment.FileUrl = name + ext;
@@ -55,19 +56,19 @@ namespace Cargo.Controllers
                 user = userName,
                 mail = mail,
                 foto = foto,
-                url = comment.FileUrl 
+                url = comment.FileUrl
             };
 
-            return Json(new {data= obj }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = obj }, JsonRequestBehavior.AllowGet);
         }
-        
+
         public JsonResult GetPost(string id)
         {
             var post = from q in db.Posts
                        where q.PostID == id
                        select new
                        {
-                           title=q.Title
+                           title = q.Title
                        };
             var publications = from q in db.Comments
                                join u in db.AspNetUsers on q.Fk_User equals u.Id
@@ -78,8 +79,8 @@ namespace Cargo.Controllers
                                    date = q.Date,
                                    message = q.CommentMessage,
                                    user = u.Nombre.Trim(),
-                                   mail=u.UserName.Trim(),
-                                   foto=u.Foto,
+                                   mail = u.UserName.Trim(),
+                                   foto = u.Foto,
                                    url = q.FileUrl
                                };
 
@@ -95,10 +96,10 @@ namespace Cargo.Controllers
                        orderby q.PubDate descending
                        select new
                        {
-                           id=q.PostID,
-                           title=q.Title,
-                           description=q.Description,
-                           date=q.PubDate
+                           id = q.PostID,
+                           title = q.Title,
+                           description = q.Description,
+                           date = q.PubDate
                        };
 
             /*
@@ -118,9 +119,9 @@ namespace Cargo.Controllers
         }
 
         /*revisar!!*/
-        public JsonResult PostMessage(Comment comment,string url, string id)
+        public JsonResult PostMessage(Comment comment, string url, string id)
         {
-            var userId=User.Identity.GetUserId();
+            var userId = User.Identity.GetUserId();
             var userName = us.Users.Where(x => x.Id == userId).Select(x => x.Nombre).SingleOrDefault();
 
             GenerateId generator = new GenerateId();
@@ -129,23 +130,24 @@ namespace Cargo.Controllers
             comment.Fk_Post = id;
             comment.Fk_User = userId;
             comment.Date = DateTime.Now;
-            if (comment.CommentMessage != null) { 
+            if (comment.CommentMessage != null)
+            {
                 db.Comments.Add(comment);
                 db.SaveChanges();
             }
-            var mail= us.Users.Where(x => x.Id == userId).Select(x => x.Email).SingleOrDefault();
+            var mail = us.Users.Where(x => x.Id == userId).Select(x => x.Email).SingleOrDefault();
             var foto = us.Users.Where(x => x.Id == userId).Select(x => x.Foto).SingleOrDefault();
             var obj = new
             {
-                date=comment.Date,
-                message=comment.CommentMessage,
-                user=userName,
+                date = comment.Date,
+                message = comment.CommentMessage,
+                user = userName,
                 mail = mail,
                 foto = foto,
                 url = url
             };
 
-            return Json(new {data=obj, postId=comment.CommentId }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = obj, postId = comment.CommentId }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult CreatePost(Post postEntry)
         {
@@ -162,24 +164,32 @@ namespace Cargo.Controllers
 
             var post = new
             {
+                id = postEntry.PostID,
                 title = postEntry.Title,
-                description= postEntry.Description,
+                description = postEntry.Description,
                 date = postEntry.PubDate,
             };
-            return Json(new {data=post }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = post }, JsonRequestBehavior.AllowGet);
         }
 
         public void CreateUserPost(String PostId, String UserId)
         {
-            GenerateId generator = new GenerateId();
+            // First is needed to check if the relation alredy exist
+            var Relation = db.PostUsers.Where(x => x.Fk_Post == PostId && x.Fk_User == UserId).Select(x => x.PostUserID);
 
-            PostUser postRelation = new PostUser();
+            if (Relation.Count() == 0 && PostId != null && UserId != null)
+            {
 
-            postRelation.PostUserID = generator.generateID();
-            postRelation.Fk_Post = PostId;
-            postRelation.Fk_User = UserId;
-            db.PostUsers.Add(postRelation);
-            db.SaveChanges();
+                GenerateId generator = new GenerateId();
+
+                PostUser postRelation = new PostUser();
+
+                postRelation.PostUserID = generator.generateID();
+                postRelation.Fk_Post = PostId;
+                postRelation.Fk_User = UserId;
+                db.PostUsers.Add(postRelation);
+                db.SaveChanges();
+            }
         }
 
 

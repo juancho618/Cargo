@@ -89,6 +89,8 @@
     <Property Name="BranchID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="BranchName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Warehouse" Relationship="Self.FK_Warehouse_Branch" FromRole="Branch" ToRole="Warehouse" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Comment">
     <Key>
@@ -102,6 +104,8 @@
     <Property Name="FileUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_Comment_AspNetUsers" FromRole="Comment" ToRole="AspNetUsers" />
     <NavigationProperty Name="Post" Relationship="Self.FK_Comment_Post" FromRole="Comment" ToRole="Post" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="CompanyAccount">
     <Key>
@@ -126,6 +130,8 @@
     <NavigationProperty Name="Warehouse" Relationship="Self.FK_Warehouse_CompanyAccount" FromRole="CompanyAccount" ToRole="Warehouse" />
     <NavigationProperty Name="Warehouse1" Relationship="Self.FK_Warehouse_CompanyAccount1" FromRole="CompanyAccount" ToRole="Warehouse" />
     <NavigationProperty Name="Warehouse2" Relationship="Self.FK_Warehouse_CompanyAccount2" FromRole="CompanyAccount" ToRole="Warehouse" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Condition">
     <Key>
@@ -134,6 +140,8 @@
     <Property Name="ConditionID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ConditionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Warehouse" Relationship="Self.FK_Warehouse_Condition" FromRole="Condition" ToRole="Warehouse" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Country">
     <Key>
@@ -142,6 +150,8 @@
     <Property Name="CountryID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="CountryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="CompanyAccount" Relationship="Self.FK_CompanyAccount_Country" FromRole="Country" ToRole="CompanyAccount" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Courier">
     <Key>
@@ -163,6 +173,7 @@
     <Property Name="Fk_UnitType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DeliveryCompany" Relationship="Self.FK_Courier_DeliveryCompany" FromRole="Courier" ToRole="DeliveryCompany" />
     <NavigationProperty Name="Warehouse" Relationship="Self.FK_Courier_Warehouse" FromRole="Courier" ToRole="Warehouse" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="CurrentWarehouseCodeNumber">
     <Key>
@@ -170,6 +181,8 @@
     </Key>
     <Property Name="WarehHouseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="WarehouseCodeNumber" Type="Int32" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="DeliveryCompany">
     <Key>
@@ -179,6 +192,7 @@
     <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Deleted" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Courier" Relationship="Self.FK_Courier_DeliveryCompany" FromRole="DeliveryCompany" ToRole="Courier" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Destination">
     <Key>
@@ -187,6 +201,8 @@
     <Property Name="DestinationId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="DestinationName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Warehouse" Relationship="Self.FK_Warehouse_Destination" FromRole="Destination" ToRole="Warehouse" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Notification">
     <Key>
@@ -195,6 +211,8 @@
     <Property Name="NotificationID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="NotificationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="NotificationAccountRelation" Relationship="Self.FK_NotificationAccountRelation_Notification" FromRole="Notification" ToRole="NotificationAccountRelation" />
+    <Property Name="Activate" Type="Boolean" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="NotificationAccountRelation">
     <Key>
@@ -205,6 +223,8 @@
     <Property Name="Fk_Notification" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="CompanyAccount" Relationship="Self.FK_NotificationAccountRelation_CompanyAccount" FromRole="NotificationAccountRelation" ToRole="CompanyAccount" />
     <NavigationProperty Name="Notification" Relationship="Self.FK_NotificationAccountRelation_Notification" FromRole="NotificationAccountRelation" ToRole="Notification" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Origin">
     <Key>
@@ -213,6 +233,8 @@
     <Property Name="OriginId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="OriginName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Warehouse" Relationship="Self.FK_Warehouse_Origin" FromRole="Origin" ToRole="Warehouse" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Post">
     <Key>
@@ -224,6 +246,8 @@
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Comment" Relationship="Self.FK_Comment_Post" FromRole="Post" ToRole="Comment" />
     <NavigationProperty Name="PostUser" Relationship="Self.FK_PostUser_Post" FromRole="Post" ToRole="PostUser" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="PostUser">
     <Key>
@@ -234,6 +258,8 @@
     <Property Name="Fk_User" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_PostUser_AspNetUsers" FromRole="PostUser" ToRole="AspNetUsers" />
     <NavigationProperty Name="Post" Relationship="Self.FK_PostUser_Post" FromRole="PostUser" ToRole="Post" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="UnitType">
     <Key>
@@ -241,6 +267,8 @@
     </Key>
     <Property Name="UnitTypeId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="UnitName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Warehouse">
     <Key>
@@ -267,6 +295,8 @@
     <NavigationProperty Name="Destination" Relationship="Self.FK_Warehouse_Destination" FromRole="Warehouse" ToRole="Destination" />
     <NavigationProperty Name="Origin" Relationship="Self.FK_Warehouse_Origin" FromRole="Warehouse" ToRole="Origin" />
     <NavigationProperty Name="WarehouseTypeRelation" Relationship="Self.FK_WarehouseTypeRelation_Warehouse" FromRole="Warehouse" ToRole="WarehouseTypeRelation" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="WarehouseTypeRelation">
     <Key>
@@ -277,6 +307,8 @@
     <Property Name="TypeId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Warehouse" Relationship="Self.FK_WarehouseTypeRelation_Warehouse" FromRole="WarehouseTypeRelation" ToRole="Warehouse" />
     <NavigationProperty Name="WarehouseTypes" Relationship="Self.FK_WarehouseTypeRelation_WarehouseTypes" FromRole="WarehouseTypeRelation" ToRole="WarehouseTypes" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="WarehouseTypes">
     <Key>
@@ -285,6 +317,8 @@
     <Property Name="TypeId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="TypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="WarehouseTypeRelation" Relationship="Self.FK_WarehouseTypeRelation_WarehouseTypes" FromRole="WarehouseTypes" ToRole="WarehouseTypeRelation" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
   </EntityType>
   <Association Name="FK_AccountClasificationRelation_AccountClasification1">
     <End Role="AccountClasification" Type="Self.AccountClasification" Multiplicity="0..1" />

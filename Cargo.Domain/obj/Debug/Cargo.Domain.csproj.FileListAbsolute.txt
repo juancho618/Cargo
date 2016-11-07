@@ -3,3 +3,8 @@ C:\Users\nesticle8bit\Desktop\Cargo App\cargo\Cargo.Domain\bin\Debug\Cargo.Domai
 C:\Users\nesticle8bit\Desktop\Cargo App\cargo\Cargo.Domain\obj\Debug\Cargo.Domain.csprojResolveAssemblyReference.cache
 C:\Users\nesticle8bit\Desktop\Cargo App\cargo\Cargo.Domain\obj\Debug\Cargo.Domain.dll
 C:\Users\nesticle8bit\Desktop\Cargo App\cargo\Cargo.Domain\obj\Debug\Cargo.Domain.pdb
+C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo.Domain\bin\Debug\Cargo.Domain.dll
+C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo.Domain\bin\Debug\Cargo.Domain.pdb
+C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo.Domain\obj\Debug\Cargo.Domain.csprojResolveAssemblyReference.cache
+C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo.Domain\obj\Debug\Cargo.Domain.dll
+C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo.Domain\obj\Debug\Cargo.Domain.pdb

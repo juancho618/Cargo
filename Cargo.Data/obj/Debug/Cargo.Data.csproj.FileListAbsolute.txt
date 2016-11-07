@@ -12,3 +12,17 @@ C:\Users\nesticle8bit\Desktop\Cargo App\cargo\Cargo.Data\bin\Debug\EntityFramewo
 C:\Users\nesticle8bit\Desktop\Cargo App\cargo\Cargo.Data\obj\Debug\Cargo.Data.csprojResolveAssemblyReference.cache
 C:\Users\nesticle8bit\Desktop\Cargo App\cargo\Cargo.Data\obj\Debug\Cargo.Data.dll
 C:\Users\nesticle8bit\Desktop\Cargo App\cargo\Cargo.Data\obj\Debug\Cargo.Data.pdb
+C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo.Data\bin\Debug\Cargo.Data.dll.config
+C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo.Data\bin\Debug\Cargo.Data.dll
+C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo.Data\bin\Debug\Cargo.Data.pdb
+C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo.Data\bin\Debug\AutoMapper.dll
+C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo.Data\bin\Debug\Cargo.Domain.dll
+C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo.Data\bin\Debug\EntityFramework.dll
+C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo.Data\bin\Debug\Cargo.Domain.pdb
+C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo.Data\bin\Debug\AutoMapper.xml
+C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo.Data\bin\Debug\EntityFramework.xml
+C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo.Data\obj\Debug\Cargo.Data.csprojResolveAssemblyReference.cache
+C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo.Data\obj\Debug\Cargo.Data.dll
+C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo.Data\obj\Debug\Cargo.Data.pdb

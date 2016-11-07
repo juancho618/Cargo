@@ -2,7 +2,7 @@
     $scope.translate = function (lan) {
         $translate.use(lan);
     }
-    
+
     $scope.post = {};
     $scope.postList = {};
     $scope.userList = {};
@@ -17,7 +17,7 @@
     $http({
         method: 'get',
         url: '/EventBlog/GetAllPost',
-    }).success(function (data) {        
+    }).success(function (data) {
         $scope.postList = data.data;
         for (var i = 0; i < $scope.postList.length; i++) {
             $scope.postList[i].date = changeFormatDates($scope.postList[i].date);
@@ -46,10 +46,12 @@
         }).error(function (e) {
             console.log(e);
         });
+        $('#createBlogModal').modal('hide');
+        swal("Post created", "The new post is created!", "success");
 
     }
 
-    $scope.createBlog= function(){
+    $scope.createBlog = function () {
         $('#createBlogModal').appendTo('body').modal('show');
     }
 
@@ -79,6 +81,8 @@
             contentType: "application/json; charset=utf-8",
             dataType: "json",
         }).success(function (e) {
+            $('#addUserModal').modal('hide');
+            swal("User added", "The new user can participate in the post!", "success");
         }).error(function (e) {
             console.log(e);
         });

@@ -85,6 +85,8 @@
     </Key>
     <Property Name="BranchID" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="BranchName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Comment">
     <Key>
@@ -96,6 +98,8 @@
     <Property Name="Date" Type="datetime" />
     <Property Name="CommentMessage" Type="nvarchar" MaxLength="100" />
     <Property Name="FileUrl" Type="nvarchar(max)" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="CompanyAccount">
     <Key>
@@ -114,6 +118,8 @@
     <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
     <Property Name="ContactName" Type="nvarchar" MaxLength="150" />
     <Property Name="Fk_Agent" Type="nvarchar" MaxLength="100" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Condition">
     <Key>
@@ -121,6 +127,8 @@
     </Key>
     <Property Name="ConditionID" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="ConditionName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Country">
     <Key>
@@ -128,6 +136,8 @@
     </Key>
     <Property Name="CountryID" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="CountryName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Courier">
     <Key>
@@ -147,6 +157,7 @@
     <Property Name="DeletedDate" Type="datetime" />
     <Property Name="Units" Type="int" />
     <Property Name="Fk_UnitType" Type="nvarchar" MaxLength="100" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="CurrentWarehouseCodeNumber">
     <Key>
@@ -154,6 +165,8 @@
     </Key>
     <Property Name="WarehHouseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="WarehouseCodeNumber" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="DeliveryCompany">
     <Key>
@@ -162,6 +175,7 @@
     <Property Name="CompanyID" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="CompanyName" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Destination">
     <Key>
@@ -169,6 +183,8 @@
     </Key>
     <Property Name="DestinationId" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="DestinationName" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Notification">
     <Key>
@@ -176,6 +192,8 @@
     </Key>
     <Property Name="NotificationID" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="NotificationName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Activate" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="NotificationAccountRelation">
     <Key>
@@ -184,6 +202,8 @@
     <Property Name="NotificationAccountRelation" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Fk_Account" Type="nvarchar" MaxLength="100" />
     <Property Name="Fk_Notification" Type="nvarchar" MaxLength="100" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Origin">
     <Key>
@@ -191,6 +211,8 @@
     </Key>
     <Property Name="OriginId" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="OriginName" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Post">
     <Key>
@@ -200,6 +222,8 @@
     <Property Name="Title" Type="nvarchar" MaxLength="200" />
     <Property Name="PubDate" Type="datetime" />
     <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="PostUser">
     <Key>
@@ -208,6 +232,8 @@
     <Property Name="PostUserID" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Fk_Post" Type="nvarchar" MaxLength="100" />
     <Property Name="Fk_User" Type="nvarchar" MaxLength="128" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="UnitType">
     <Key>
@@ -215,6 +241,8 @@
     </Key>
     <Property Name="UnitTypeId" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="UnitName" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Warehouse">
     <Key>
@@ -232,6 +260,8 @@
     <Property Name="Description" Type="nvarchar(max)" />
     <Property Name="Fk_Origin" Type="nvarchar" MaxLength="100" />
     <Property Name="Fk_Destination" Type="nvarchar" MaxLength="100" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="WarehouseTypeRelation">
     <Key>
@@ -240,6 +270,8 @@
     <Property Name="WarehouseTypeRelationId" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="WarehouseId" Type="nvarchar" MaxLength="100" />
     <Property Name="TypeId" Type="nvarchar" MaxLength="100" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="WarehouseTypes">
     <Key>
@@ -247,6 +279,8 @@
     </Key>
     <Property Name="TypeId" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="TypeName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <Association Name="FK_AccountClasificationRelation_AccountClasification1">
     <End Role="AccountClasification" Type="Self.AccountClasification" Multiplicity="0..1" />
