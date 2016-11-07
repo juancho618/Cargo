@@ -1,0 +1,186 @@
+﻿@{ViewBag.Title = "Accounts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 translate="COMPANIESACCOUNTLIST"></h2>
+<hr />
+<div ng-controller="companyAccountController">
+    <div class="pull-left">
+        <button type="button" class="btn btn-success btn-sm" ng-click="openModalAddCompanyAccount()"><i class="fa fa-plus-circle"></i> <span translate="ADD"></span></button>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content table-responsive table-full-width">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th translate="COMPANYNAME"></th>
+                            <th translate="CITY"></th>
+                            <th translate="STATE"></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr ng-repeat="item in companyAccount">
+                            <td>{{item.CompanyName}}</td>
+                            <td>{{item.City}}</td>
+                            <td>{{item.State}}</td>
+                            <td>
+                                <button type="button" class="btn btn-warning btn-xs" @*ng-click="editCourier($index)"*@><i class="fa fa-pencil"></i></button>
+                                <button type="button" class="btn btn-danger btn-xs" @*ng-click="removeItem($index)"*@><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+   @*Create Account  Modal*@
+<div id="CreateAccountModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" translate="CREATEACCOUNT"></h4>
+            </div>
+            <form name="product" method="post" ng-submit="addAccount()">
+                @Html.AntiForgeryToken()
+
+                <div class="modal-body">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <span translate="ACCOUNTINFO"></span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="companyModal" class="control-label" translate="COMPANY"></label>
+                                        <input id="companyModal" ng-model="account.companyName" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="adressModal" class="control-label" translate="ADRESS"></label>
+                                        <input id="adressModal" ng-model="account.adress" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="cityModal" class="control-label" translate="CITY"></label>
+                                        <input id="cityModal" ng-model="account.city" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="stateModal" class="control-label" translate="STATE"></label>
+                                        <input id="stateModal" ng-model="account.state" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="zipCodeModal" class="control-label" translate="ZIPCODE"></label>
+                                        <input id="zipCodeModal" type="number" ng-model="account.zipcode" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="countryModal" class="control-label" translate="COUNTRY"></label>
+                                        <select class="form-control" ng-model="account.fk_CountryID" ng-options="item as item.CountryName for item in countriesList"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="phoneModal" class="control-label" translate="PHONE"></label>
+                                        <input id="phoneModal" type="tel" ng-model="account.phone" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="faxModal" class="control-label" translate="FAX"></label>
+                                        <input id="faxModal" type="tel" ng-model="account.fax" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="mobilModal" class="control-label" translate="MOBIL"></label>
+                                        <input id="mobilModal" type="tel" ng-model="account.mobile" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="emailModal" class="control-label" translate="EMAIL"></label>
+                                        <input id="emailModal" type="email" ng-model="account.email" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="contactModal" class="control-label" translate="CONTACT"></label>
+                                        <input id="contactModal" type="text" ng-model="account.contactName" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="agentModal" class="control-label" translate="AGENT"></label>
+                                        <input id="agentModal" type="text" ng-model="account.fk_Agent" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <span translate="ACCOUNTCLASSIFICATION"></span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="checkbox-inline" ng-repeat="item in classificationList">
+                                            <label><input type="checkbox" ng-model="classificationAccount[item.Classification]" ng-click="toggleSelection(item.Classification)" /> {{item.Classification}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <span translate="ACCOUNTNOTIFICATION"></span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="checkbox-inline" ng-repeat="item in notificationList">
+                                            <label><input type="checkbox" ng-model="notificationAccount[item.Notification]" ng-click="toggleNotification(item.Notification)" /> {{item.Notification}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i> <span translate="SAVEACCOUNT"></span></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

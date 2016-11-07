@@ -1,0 +1,680 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CargoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AccountClasification">
+    <Key>
+      <PropertyRef Name="AccountClasificationID" />
+    </Key>
+    <Property Name="AccountClasificationID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClasificationName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AccountClasificationRelation" Relationship="Self.FK_AccountClasificationRelation_AccountClasification1" FromRole="AccountClasification" ToRole="AccountClasificationRelation" />
+  </EntityType>
+  <EntityType Name="AccountClasificationRelation">
+    <Key>
+      <PropertyRef Name="AccountClasificationID" />
+    </Key>
+    <Property Name="AccountClasificationID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Fk_AccountID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Fk_ClasificationID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AccountClasification" Relationship="Self.FK_AccountClasificationRelation_AccountClasification1" FromRole="AccountClasificationRelation" ToRole="AccountClasification" />
+    <NavigationProperty Name="CompanyAccount" Relationship="Self.FK_AccountClasificationRelation_CompanyAccount1" FromRole="AccountClasificationRelation" ToRole="CompanyAccount" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Foto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="Comment" Relationship="Self.FK_Comment_AspNetUsers" FromRole="AspNetUsers" ToRole="Comment" />
+    <NavigationProperty Name="PostUser" Relationship="Self.FK_PostUser_AspNetUsers" FromRole="AspNetUsers" ToRole="PostUser" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="Branch">
+    <Key>
+      <PropertyRef Name="BranchID" />
+    </Key>
+    <Property Name="BranchID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BranchName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Warehouse" Relationship="Self.FK_Warehouse_Branch" FromRole="Branch" ToRole="Warehouse" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Fk_Post" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Fk_User" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="CommentMessage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FileUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_Comment_AspNetUsers" FromRole="Comment" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Post" Relationship="Self.FK_Comment_Post" FromRole="Comment" ToRole="Post" />
+  </EntityType>
+  <EntityType Name="CompanyAccount">
+    <Key>
+      <PropertyRef Name="CompanyAccountID" />
+    </Key>
+    <Property Name="CompanyAccountID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CompanyName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Adress" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fk_CountryID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ContactName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Fk_Agent" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AccountClasificationRelation" Relationship="Self.FK_AccountClasificationRelation_CompanyAccount1" FromRole="CompanyAccount" ToRole="AccountClasificationRelation" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_CompanyAccount_Country" FromRole="CompanyAccount" ToRole="Country" />
+    <NavigationProperty Name="NotificationAccountRelation" Relationship="Self.FK_NotificationAccountRelation_CompanyAccount" FromRole="CompanyAccount" ToRole="NotificationAccountRelation" />
+    <NavigationProperty Name="Warehouse" Relationship="Self.FK_Warehouse_CompanyAccount" FromRole="CompanyAccount" ToRole="Warehouse" />
+    <NavigationProperty Name="Warehouse1" Relationship="Self.FK_Warehouse_CompanyAccount1" FromRole="CompanyAccount" ToRole="Warehouse" />
+    <NavigationProperty Name="Warehouse2" Relationship="Self.FK_Warehouse_CompanyAccount2" FromRole="CompanyAccount" ToRole="Warehouse" />
+  </EntityType>
+  <EntityType Name="Condition">
+    <Key>
+      <PropertyRef Name="ConditionID" />
+    </Key>
+    <Property Name="ConditionID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ConditionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Warehouse" Relationship="Self.FK_Warehouse_Condition" FromRole="Condition" ToRole="Warehouse" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryID" />
+    </Key>
+    <Property Name="CountryID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CountryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="CompanyAccount" Relationship="Self.FK_CompanyAccount_Country" FromRole="Country" ToRole="CompanyAccount" />
+  </EntityType>
+  <EntityType Name="Courier">
+    <Key>
+      <PropertyRef Name="CourierID" />
+    </Key>
+    <Property Name="CourierID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Fk_WarehouseID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Length" Type="Double" Nullable="false" />
+    <Property Name="Width" Type="Double" Nullable="false" />
+    <Property Name="Height" Type="Double" Nullable="false" />
+    <Property Name="Weight" Type="Double" Nullable="false" />
+    <Property Name="TrackingNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Fk_DeliveryCompany" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastModificationDate" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+    <Property Name="Units" Type="Int32" />
+    <Property Name="Fk_UnitType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DeliveryCompany" Relationship="Self.FK_Courier_DeliveryCompany" FromRole="Courier" ToRole="DeliveryCompany" />
+    <NavigationProperty Name="Warehouse" Relationship="Self.FK_Courier_Warehouse" FromRole="Courier" ToRole="Warehouse" />
+  </EntityType>
+  <EntityType Name="CurrentWarehouseCodeNumber">
+    <Key>
+      <PropertyRef Name="WarehHouseID" />
+    </Key>
+    <Property Name="WarehHouseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WarehouseCodeNumber" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DeliveryCompany">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Courier" Relationship="Self.FK_Courier_DeliveryCompany" FromRole="DeliveryCompany" ToRole="Courier" />
+  </EntityType>
+  <EntityType Name="Destination">
+    <Key>
+      <PropertyRef Name="DestinationId" />
+    </Key>
+    <Property Name="DestinationId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DestinationName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Warehouse" Relationship="Self.FK_Warehouse_Destination" FromRole="Destination" ToRole="Warehouse" />
+  </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="NotificationID" />
+    </Key>
+    <Property Name="NotificationID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NotificationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="NotificationAccountRelation" Relationship="Self.FK_NotificationAccountRelation_Notification" FromRole="Notification" ToRole="NotificationAccountRelation" />
+  </EntityType>
+  <EntityType Name="NotificationAccountRelation">
+    <Key>
+      <PropertyRef Name="NotificationAccountRelation1" />
+    </Key>
+    <Property Name="NotificationAccountRelation1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Fk_Account" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Fk_Notification" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CompanyAccount" Relationship="Self.FK_NotificationAccountRelation_CompanyAccount" FromRole="NotificationAccountRelation" ToRole="CompanyAccount" />
+    <NavigationProperty Name="Notification" Relationship="Self.FK_NotificationAccountRelation_Notification" FromRole="NotificationAccountRelation" ToRole="Notification" />
+  </EntityType>
+  <EntityType Name="Origin">
+    <Key>
+      <PropertyRef Name="OriginId" />
+    </Key>
+    <Property Name="OriginId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OriginName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Warehouse" Relationship="Self.FK_Warehouse_Origin" FromRole="Origin" ToRole="Warehouse" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="PostID" />
+    </Key>
+    <Property Name="PostID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="PubDate" Type="DateTime" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Comment" Relationship="Self.FK_Comment_Post" FromRole="Post" ToRole="Comment" />
+    <NavigationProperty Name="PostUser" Relationship="Self.FK_PostUser_Post" FromRole="Post" ToRole="PostUser" />
+  </EntityType>
+  <EntityType Name="PostUser">
+    <Key>
+      <PropertyRef Name="PostUserID" />
+    </Key>
+    <Property Name="PostUserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Fk_Post" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Fk_User" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_PostUser_AspNetUsers" FromRole="PostUser" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Post" Relationship="Self.FK_PostUser_Post" FromRole="PostUser" ToRole="Post" />
+  </EntityType>
+  <EntityType Name="UnitType">
+    <Key>
+      <PropertyRef Name="UnitTypeId" />
+    </Key>
+    <Property Name="UnitTypeId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UnitName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Warehouse">
+    <Key>
+      <PropertyRef Name="WarehouseID" />
+    </Key>
+    <Property Name="WarehouseID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NumberCode" Type="Int32" />
+    <Property Name="Fk_BranchID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Fk_ShipperID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Fk_Consignee" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Fk_Agent" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Fk_DeliveryCompany" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Fk_Condition" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Fk_Origin" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Fk_Destination" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Branch" Relationship="Self.FK_Warehouse_Branch" FromRole="Warehouse" ToRole="Branch" />
+    <NavigationProperty Name="CompanyAccount" Relationship="Self.FK_Warehouse_CompanyAccount" FromRole="Warehouse" ToRole="CompanyAccount" />
+    <NavigationProperty Name="CompanyAccount1" Relationship="Self.FK_Warehouse_CompanyAccount1" FromRole="Warehouse" ToRole="CompanyAccount" />
+    <NavigationProperty Name="CompanyAccount2" Relationship="Self.FK_Warehouse_CompanyAccount2" FromRole="Warehouse" ToRole="CompanyAccount" />
+    <NavigationProperty Name="Condition" Relationship="Self.FK_Warehouse_Condition" FromRole="Warehouse" ToRole="Condition" />
+    <NavigationProperty Name="Courier" Relationship="Self.FK_Courier_Warehouse" FromRole="Warehouse" ToRole="Courier" />
+    <NavigationProperty Name="Destination" Relationship="Self.FK_Warehouse_Destination" FromRole="Warehouse" ToRole="Destination" />
+    <NavigationProperty Name="Origin" Relationship="Self.FK_Warehouse_Origin" FromRole="Warehouse" ToRole="Origin" />
+    <NavigationProperty Name="WarehouseTypeRelation" Relationship="Self.FK_WarehouseTypeRelation_Warehouse" FromRole="Warehouse" ToRole="WarehouseTypeRelation" />
+  </EntityType>
+  <EntityType Name="WarehouseTypeRelation">
+    <Key>
+      <PropertyRef Name="WarehouseTypeRelationId" />
+    </Key>
+    <Property Name="WarehouseTypeRelationId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="WarehouseId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="TypeId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Warehouse" Relationship="Self.FK_WarehouseTypeRelation_Warehouse" FromRole="WarehouseTypeRelation" ToRole="Warehouse" />
+    <NavigationProperty Name="WarehouseTypes" Relationship="Self.FK_WarehouseTypeRelation_WarehouseTypes" FromRole="WarehouseTypeRelation" ToRole="WarehouseTypes" />
+  </EntityType>
+  <EntityType Name="WarehouseTypes">
+    <Key>
+      <PropertyRef Name="TypeId" />
+    </Key>
+    <Property Name="TypeId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="WarehouseTypeRelation" Relationship="Self.FK_WarehouseTypeRelation_WarehouseTypes" FromRole="WarehouseTypes" ToRole="WarehouseTypeRelation" />
+  </EntityType>
+  <Association Name="FK_AccountClasificationRelation_AccountClasification1">
+    <End Role="AccountClasification" Type="Self.AccountClasification" Multiplicity="0..1" />
+    <End Role="AccountClasificationRelation" Type="Self.AccountClasificationRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountClasification">
+        <PropertyRef Name="AccountClasificationID" />
+      </Principal>
+      <Dependent Role="AccountClasificationRelation">
+        <PropertyRef Name="Fk_ClasificationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AccountClasificationRelation_CompanyAccount1">
+    <End Role="CompanyAccount" Type="Self.CompanyAccount" Multiplicity="0..1" />
+    <End Role="AccountClasificationRelation" Type="Self.AccountClasificationRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CompanyAccount">
+        <PropertyRef Name="CompanyAccountID" />
+      </Principal>
+      <Dependent Role="AccountClasificationRelation">
+        <PropertyRef Name="Fk_AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="Fk_User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostUser_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="PostUser" Type="Self.PostUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PostUser">
+        <PropertyRef Name="Fk_User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Warehouse_Branch">
+    <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="BranchID" />
+      </Principal>
+      <Dependent Role="Warehouse">
+        <PropertyRef Name="Fk_BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_Post">
+    <End Role="Post" Type="Self.Post" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="PostID" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="Fk_Post" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyAccount_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="CompanyAccount" Type="Self.CompanyAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="CompanyAccount">
+        <PropertyRef Name="Fk_CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NotificationAccountRelation_CompanyAccount">
+    <End Role="CompanyAccount" Type="Self.CompanyAccount" Multiplicity="0..1" />
+    <End Role="NotificationAccountRelation" Type="Self.NotificationAccountRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CompanyAccount">
+        <PropertyRef Name="CompanyAccountID" />
+      </Principal>
+      <Dependent Role="NotificationAccountRelation">
+        <PropertyRef Name="Fk_Account" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Warehouse_CompanyAccount">
+    <End Role="CompanyAccount" Type="Self.CompanyAccount" Multiplicity="0..1" />
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CompanyAccount">
+        <PropertyRef Name="CompanyAccountID" />
+      </Principal>
+      <Dependent Role="Warehouse">
+        <PropertyRef Name="Fk_ShipperID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Warehouse_CompanyAccount1">
+    <End Role="CompanyAccount" Type="Self.CompanyAccount" Multiplicity="0..1" />
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CompanyAccount">
+        <PropertyRef Name="CompanyAccountID" />
+      </Principal>
+      <Dependent Role="Warehouse">
+        <PropertyRef Name="Fk_Consignee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Warehouse_CompanyAccount2">
+    <End Role="CompanyAccount" Type="Self.CompanyAccount" Multiplicity="0..1" />
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CompanyAccount">
+        <PropertyRef Name="CompanyAccountID" />
+      </Principal>
+      <Dependent Role="Warehouse">
+        <PropertyRef Name="Fk_Agent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Warehouse_Condition">
+    <End Role="Condition" Type="Self.Condition" Multiplicity="0..1" />
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Condition">
+        <PropertyRef Name="ConditionID" />
+      </Principal>
+      <Dependent Role="Warehouse">
+        <PropertyRef Name="Fk_Condition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Courier_DeliveryCompany">
+    <End Role="DeliveryCompany" Type="Self.DeliveryCompany" Multiplicity="0..1" />
+    <End Role="Courier" Type="Self.Courier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeliveryCompany">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Courier">
+        <PropertyRef Name="Fk_DeliveryCompany" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Courier_Warehouse">
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
+    <End Role="Courier" Type="Self.Courier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouse">
+        <PropertyRef Name="WarehouseID" />
+      </Principal>
+      <Dependent Role="Courier">
+        <PropertyRef Name="Fk_WarehouseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Warehouse_Destination">
+    <End Role="Destination" Type="Self.Destination" Multiplicity="0..1" />
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Destination">
+        <PropertyRef Name="DestinationId" />
+      </Principal>
+      <Dependent Role="Warehouse">
+        <PropertyRef Name="Fk_Destination" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NotificationAccountRelation_Notification">
+    <End Role="Notification" Type="Self.Notification" Multiplicity="0..1" />
+    <End Role="NotificationAccountRelation" Type="Self.NotificationAccountRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Notification">
+        <PropertyRef Name="NotificationID" />
+      </Principal>
+      <Dependent Role="NotificationAccountRelation">
+        <PropertyRef Name="Fk_Notification" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Warehouse_Origin">
+    <End Role="Origin" Type="Self.Origin" Multiplicity="0..1" />
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Origin">
+        <PropertyRef Name="OriginId" />
+      </Principal>
+      <Dependent Role="Warehouse">
+        <PropertyRef Name="Fk_Origin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostUser_Post">
+    <End Role="Post" Type="Self.Post" Multiplicity="0..1" />
+    <End Role="PostUser" Type="Self.PostUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="PostID" />
+      </Principal>
+      <Dependent Role="PostUser">
+        <PropertyRef Name="Fk_Post" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WarehouseTypeRelation_Warehouse">
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="0..1" />
+    <End Role="WarehouseTypeRelation" Type="Self.WarehouseTypeRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouse">
+        <PropertyRef Name="WarehouseID" />
+      </Principal>
+      <Dependent Role="WarehouseTypeRelation">
+        <PropertyRef Name="WarehouseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WarehouseTypeRelation_WarehouseTypes">
+    <End Role="WarehouseTypes" Type="Self.WarehouseTypes" Multiplicity="0..1" />
+    <End Role="WarehouseTypeRelation" Type="Self.WarehouseTypeRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WarehouseTypes">
+        <PropertyRef Name="TypeId" />
+      </Principal>
+      <Dependent Role="WarehouseTypeRelation">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="CargoDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="AccountClasification" EntityType="Self.AccountClasification" />
+    <EntitySet Name="AccountClasificationRelation" EntityType="Self.AccountClasificationRelation" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+    <EntitySet Name="Branch" EntityType="Self.Branch" />
+    <EntitySet Name="Comment" EntityType="Self.Comment" />
+    <EntitySet Name="CompanyAccount" EntityType="Self.CompanyAccount" />
+    <EntitySet Name="Condition" EntityType="Self.Condition" />
+    <EntitySet Name="Country" EntityType="Self.Country" />
+    <EntitySet Name="Courier" EntityType="Self.Courier" />
+    <EntitySet Name="CurrentWarehouseCodeNumber" EntityType="Self.CurrentWarehouseCodeNumber" />
+    <EntitySet Name="DeliveryCompany" EntityType="Self.DeliveryCompany" />
+    <EntitySet Name="Destination" EntityType="Self.Destination" />
+    <EntitySet Name="Notification" EntityType="Self.Notification" />
+    <EntitySet Name="NotificationAccountRelation" EntityType="Self.NotificationAccountRelation" />
+    <EntitySet Name="Origin" EntityType="Self.Origin" />
+    <EntitySet Name="Post" EntityType="Self.Post" />
+    <EntitySet Name="PostUser" EntityType="Self.PostUser" />
+    <EntitySet Name="UnitType" EntityType="Self.UnitType" />
+    <EntitySet Name="Warehouse" EntityType="Self.Warehouse" />
+    <EntitySet Name="WarehouseTypeRelation" EntityType="Self.WarehouseTypeRelation" />
+    <EntitySet Name="WarehouseTypes" EntityType="Self.WarehouseTypes" />
+    <AssociationSet Name="FK_AccountClasificationRelation_AccountClasification1" Association="Self.FK_AccountClasificationRelation_AccountClasification1">
+      <End Role="AccountClasification" EntitySet="AccountClasification" />
+      <End Role="AccountClasificationRelation" EntitySet="AccountClasificationRelation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AccountClasificationRelation_CompanyAccount1" Association="Self.FK_AccountClasificationRelation_CompanyAccount1">
+      <End Role="CompanyAccount" EntitySet="CompanyAccount" />
+      <End Role="AccountClasificationRelation" EntitySet="AccountClasificationRelation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_AspNetUsers" Association="Self.FK_Comment_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostUser_AspNetUsers" Association="Self.FK_PostUser_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="PostUser" EntitySet="PostUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Warehouse_Branch" Association="Self.FK_Warehouse_Branch">
+      <End Role="Branch" EntitySet="Branch" />
+      <End Role="Warehouse" EntitySet="Warehouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_Post" Association="Self.FK_Comment_Post">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyAccount_Country" Association="Self.FK_CompanyAccount_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="CompanyAccount" EntitySet="CompanyAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NotificationAccountRelation_CompanyAccount" Association="Self.FK_NotificationAccountRelation_CompanyAccount">
+      <End Role="CompanyAccount" EntitySet="CompanyAccount" />
+      <End Role="NotificationAccountRelation" EntitySet="NotificationAccountRelation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Warehouse_CompanyAccount" Association="Self.FK_Warehouse_CompanyAccount">
+      <End Role="CompanyAccount" EntitySet="CompanyAccount" />
+      <End Role="Warehouse" EntitySet="Warehouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Warehouse_CompanyAccount1" Association="Self.FK_Warehouse_CompanyAccount1">
+      <End Role="CompanyAccount" EntitySet="CompanyAccount" />
+      <End Role="Warehouse" EntitySet="Warehouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Warehouse_CompanyAccount2" Association="Self.FK_Warehouse_CompanyAccount2">
+      <End Role="CompanyAccount" EntitySet="CompanyAccount" />
+      <End Role="Warehouse" EntitySet="Warehouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Warehouse_Condition" Association="Self.FK_Warehouse_Condition">
+      <End Role="Condition" EntitySet="Condition" />
+      <End Role="Warehouse" EntitySet="Warehouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Courier_DeliveryCompany" Association="Self.FK_Courier_DeliveryCompany">
+      <End Role="DeliveryCompany" EntitySet="DeliveryCompany" />
+      <End Role="Courier" EntitySet="Courier" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Courier_Warehouse" Association="Self.FK_Courier_Warehouse">
+      <End Role="Warehouse" EntitySet="Warehouse" />
+      <End Role="Courier" EntitySet="Courier" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Warehouse_Destination" Association="Self.FK_Warehouse_Destination">
+      <End Role="Destination" EntitySet="Destination" />
+      <End Role="Warehouse" EntitySet="Warehouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NotificationAccountRelation_Notification" Association="Self.FK_NotificationAccountRelation_Notification">
+      <End Role="Notification" EntitySet="Notification" />
+      <End Role="NotificationAccountRelation" EntitySet="NotificationAccountRelation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Warehouse_Origin" Association="Self.FK_Warehouse_Origin">
+      <End Role="Origin" EntitySet="Origin" />
+      <End Role="Warehouse" EntitySet="Warehouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostUser_Post" Association="Self.FK_PostUser_Post">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="PostUser" EntitySet="PostUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WarehouseTypeRelation_Warehouse" Association="Self.FK_WarehouseTypeRelation_Warehouse">
+      <End Role="Warehouse" EntitySet="Warehouse" />
+      <End Role="WarehouseTypeRelation" EntitySet="WarehouseTypeRelation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WarehouseTypeRelation_WarehouseTypes" Association="Self.FK_WarehouseTypeRelation_WarehouseTypes">
+      <End Role="WarehouseTypes" EntitySet="WarehouseTypes" />
+      <End Role="WarehouseTypeRelation" EntitySet="WarehouseTypeRelation" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,75 @@
+﻿@using System.Security.Claims
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+
+        <li>
+            <a href="@Url.Action("Index","Manage")">
+                @{
+                    var identity = (ClaimsIdentity)User.Identity;
+                    var name = identity.FindFirstValue(ClaimTypes.GivenName) ?? identity.GetUserName();
+                }
+                @name
+            </a>
+        </li>
+
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-list"></i>
+                <!--<b class="caret"></b>-->
+            </a>
+            <ul class="dropdown-menu dropdown-with-icons">
+                <li>
+                    <a href="#">
+                        <i class="pe-7s-mail"></i> Messages
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="pe-7s-help1"></i> Help Center
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="pe-7s-tools"></i> Settings
+                    </a>
+                </li>
+                <li ng-click="translate('es')">
+                    <a>
+                        <img style="margin: 0 7px 0 11px" src="~/Images/ES.png" /> Espanol
+                    </a>
+                </li>
+                <li ng-click="translate('en')">
+                    <a>
+                        <img style="margin: 0 7px 0 11px" src="~/Images/US.png" /> English
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#">
+                        <i class="pe-7s-lock"></i> Lock Screen
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:document.getElementById('logoutForm').submit()" class="text-danger">
+                        <i class="pe-7s-close-circle"></i>
+                        Log out
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

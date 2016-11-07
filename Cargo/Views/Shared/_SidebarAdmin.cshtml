@@ -1,0 +1,41 @@
+﻿<div class="sidebar-wrapper">
+    <div class="logo">
+        <a href="@Url.Action("Index", "Home")" class="simple-text">
+            <i class="fa fa-truck fa-2x"></i>
+        </a>
+    </div>
+
+    <ul class="nav">
+
+        <li id="btn-1" onmouseover="animateSideBar(this)" onmouseout="desanimateSideBar(this)">
+            <a data-toggle="collapse" data-target="#warehouseSubmenu" aria-expanded="false">
+                <i class="pe-7s-box2"></i>
+                <p>asdas <span translate="WAREHOUSE"></span></p>
+            </a>
+
+            <ul class="nav collapse" id="warehouseSubmenu" role="menu" aria-labelledby="btn-1">
+                <li onmouseover="animateSideBar(this)" onmouseout="desanimateSideBar(this)">
+                    <a href="@Url.Action("Create","Courier")">
+                        <i class="fa fa-truck"></i> Create courier
+                    </a>
+                </li>
+                <li onmouseover="animateSideBar(this)" onmouseout="desanimateSideBar(this)">
+                    <a href="@Url.Action("Index","warehouse")">
+                        <i class="fa fa-truck"></i> warehouse list
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li onmouseover="animateSideBar(this)" onmouseout="desanimateSideBar(this)">
+            <a href="@Url.Action("Parametrization","Home")">
+                <i class="fa fa-sliders"></i>  <span translate="PARAMETRIZATION"></span>
+            </a>
+        </li>
+        <li onmouseover="animateSideBar(this)" onmouseout="desanimateSideBar(this)">
+            <a href="@Url.Action("Index","CompanyAccount")">
+                <i class="fa fa-users"></i>  <span translate="COMPANIESACCOUNTS"></span>
+            </a>
+        </li>
+    </ul>
+</div>

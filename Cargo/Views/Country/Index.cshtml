@@ -1,0 +1,65 @@
+﻿@{ViewBag.Title = "Country";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 translate="COUNTRYLIST"></h2>
+<hr />
+<div ng-controller="countryController">
+    <div class="pull-left">
+        <button type="button" class="btn btn-success btn-sm" ng-click="openModalAddCountry()"><i class="fa fa-plus-circle"></i> <span translate="ADD"></span></button>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content table-responsive table-full-width">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th translate="COUNTRYNAME"></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr ng-repeat="item in country">
+                            <td>{{item.CountryName}}</td>
+                            <td class="pull-right">
+                                <button type="button" class="btn btn-warning btn-xs" @*ng-click="editCourier($index)"*@><i class="fa fa-pencil"></i></button>
+                                <button type="button" class="btn btn-danger btn-xs" @*ng-click="removeItem($index)"*@><i class="fa fa-trash"></i></button>
+                            </td>
+                            <div class="clearfix"></div>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    @*Add Unit type modal*@
+    <div id="addCountry" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"><span translate="COUNTRY"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label" for="conditionName" translate="COUNTRYNAME"></label>
+                                <input type="text" class="form-control" ng-model="countryObj.CountryName" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" ng-click="addCountry()"><i class="fa fa-plus"></i> <span translate="ADD"></span></button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+
+

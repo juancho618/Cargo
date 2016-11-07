@@ -1,0 +1,176 @@
+﻿
+@{
+    ViewBag.Title = "Post";
+}
+<div class="container" ng-controller="postController">
+    <h2>{{post.title}}</h2>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class=""><br />
+                <div class="comments-container">
+                    <ul id="comments-list" class="comments-list">
+                        <li ng-repeat="item in postList">
+                            <div class="comment-main-level">
+                                <!-- Avatar -->
+                                <div class="comment-avatar">
+                                    <img src="~/Files/Img/{{item.mail}}/{{item.foto}}" alt="">
+                                </div>
+
+                                <!-- Contenedor del Comentario -->
+                                <div class="comment-box">
+                                    <div id="notificationsSound"></div>
+                                    <div class="comment-head">
+                                        <h6 class="comment-name by-author">
+                                            <span>{{item.user}}&nbsp;</span> {{item.date}}
+                                        </h6>
+
+                                        <i class="fa fa-reply"></i>
+                                        <i class="fa fa-heart"></i> 
+                                    </div>
+                                    <div class="comment-content">
+                                        {{item.message}}
+
+                                        <hr class="hr-sm"/>
+                                        <a ng-show="item.url != null && item.url != ''" class="label label-info" href="~/Files/Img/{{id}}/{{item.url}}" target="_blank">
+                                            <i class="fa fa-download"></i> File
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Respuestas de los comentarios -->
+                            @*<ul class="comments-list reply-list">
+                        <li>
+                            <!-- Avatar -->
+                            <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
+                            <!-- Contenedor del Comentario -->
+                            <div class="comment-box">
+                                <div class="comment-head">
+                                    <h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
+                                    <span>hace 10 minutos</span>
+                                    <i class="fa fa-reply"></i>
+                                    <i class="fa fa-heart"></i>
+                                </div>
+                                <div class="comment-content">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <!-- Avatar -->
+                            <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+                            <!-- Contenedor del Comentario -->
+                            <div class="comment-box">
+                                <div class="comment-head">
+                                    <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>
+                                    <span>hace 10 minutos</span>
+                                    <i class="fa fa-reply"></i>
+                                    <i class="fa fa-heart"></i>
+                                </div>
+                                <div class="comment-content">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+                                </div>
+                            </div>
+                        </li>
+                    </ul>*@
+                        </li>
+
+                        @*<li>
+                    <div class="comment-main-level">
+                        <!-- Avatar -->
+                        <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
+                        <!-- Contenedor del Comentario -->
+                        <div class="comment-box">
+                            <div class="comment-head">
+                                <h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
+                                <span>hace 10 minutos</span>
+                                <i class="fa fa-reply"></i>
+                                <i class="fa fa-heart"></i>
+                            </div>
+                            <div class="comment-content">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+                            </div>
+                        </div>
+                    </div>
+                </li>*@
+                    </ul>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget-area no-padding blank">
+                    <div class="status-upload">
+                        <form>
+                            <textarea placeholder="Test your message..." ng-model="message.CommentMessage"></textarea>
+                            <ul>
+                                <li>
+                                    <span id="fileName"></span>
+                                </li>
+                                <li>
+                                    <button title="Upload a File" data-toggle="tooltip" class="button btn btn-xs btn-info" ngf-select ng-model="file" name="file" ngf-max-size="20MB" ngf-resize="{width: 100, height: 100}">
+                                        <i class="fa fa-file-archive-o"></i>
+                                    </button>
+                                </li>
+                            </ul>
+                            <button type="submit" class="btn btn-wd btn-success" ng-click="addMessage()"><i class="fa fa-share"></i> Submit</button>
+                        </form>
+                    </div><!-- Status Upload  -->
+                </div><!-- Widget Area -->
+            </div>
+        </div>
+    }
+
+    @*Modal to Upload files*@
+    @*Modal Create Blog*@
+    @*<div id="cruploadFileModal" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"> Upload file</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Entry
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="control-label" for="postTitle">Name</label>
+                                        <input type="text" id="postTitle" ng-model="file.Name" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="postDescription" class="control-label">Description</label>
+                                            <div class="input-group">
+                                                <textarea id="postDescription" class="form-control" ng-model="post.Description"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-success" ng-click="addPost()"><i class="fa fa-plus-circle"></i>ADD</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->*@
+
+</div>
+<script src="~/Scripts/bootstrap-filestyle.min.js"></script>

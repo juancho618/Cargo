@@ -1,0 +1,666 @@
+﻿@model Cargo.Models.Courier
+@{
+    ViewBag.Title = "Create";
+    Layout= "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 translate="CREATE_COURIER_TITLE"></h2>
+
+
+
+<div ng-controller="courierController" ng-init="init(@Html.Raw(ViewBag.CodeNumber))" >
+    <form>
+        <hr />
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span translate="WAREHOUSEINFO"></span>
+            </div>
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="CreationDate" class="control-label" translate="CREATIONDATE"></label>
+
+                            <div class="input-group">
+                                <input type="text" class="form-control" datetime-picker="dd MMM yyyy HH:mm" ng-model="warehouse.CreationDate" is-open="isOpen" ng-disabled="true" />
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="openCalendar($event, prop)" ng-disabled="true">
+                                        <i class="fa fa-calendar"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="CodeNumber" class="control-label" translate="CODENUMBER"></label>
+                            <input type="number" ng-model="warehouse.NumberCode" class="form-control" ng-disabled="true"></input>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Branch" class="control-label" translate="BRANCH"></label>
+                            <select class="form-control" id="Branch" ng-model="warehouse.Fk_BranchID" ng-options="item as item.BranchName for item in branch"></select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="Origin" class="control-label" translate="ORIGIN"></label>
+                            <select class="form-control" id="Origin" ng-model="warehouse.Fk_Origin" ng-options="item as item.OriginName for item in origin"></select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="Destination" class="control-label" translate="DESTINATION"></label>
+                            <select class="form-control" id="Destination" ng-model="warehouse.Fk_Destination" ng-options="item as item.DestinationName for item in destination"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Shipper" class="control-label" translate="SHIPPER"></label>
+                            <div class="input-group">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-primary" ng-click="openModal('Shipper')">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                                <input id="Shipper" class="form-control" ng-model="warehouse.Fk_ShipperID" type="text" ng-disabled="true" />
+                                <input id="ShipperHide" class="form-control" ng-hide="true" ng-model="warehouse.ShipperId" type="text" ng-disabled="true" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Consignee" class="control-label" translate="CONSIGNEE"></label>
+                            <div class="input-group">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-primary" ng-click="openModal('Consignee')">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                                <input id="Consignee" class="form-control" ng-model="warehouse.Fk_Consignee" type="text" ng-disabled="true" />
+                                <input id="ConsigneeHide" class="form-control" ng-hide="true" ng-model="warehouse.ConsigneeId" type="text" ng-disabled="true" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Agent" class="control-label" translate="AGENT"></label>
+                            <div class="input-group">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-primary" ng-click="openModal('Agent')">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                                <input id="Agent" class="form-control" ng-model="warehouse.Fk_Agent" type="text" ng-disabled="true" />
+                                <input id="AgentHide" class="form-control" ng-hide="true" ng-model="warehouse.AgentId" type="text" ng-disabled="true" />
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="col-md-6">
+                        <div class="form-group">
+                            <label for="DeliveryCompany" class="control-label" translate="DELIVERY_BY"></label>
+                            <input id="DeliveryCompany" class="form-control" ng-model="warehouse.Fk_DeliveryCompany" type="text" />
+                        </div>
+                    </div>*@
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label" for="description" translate="DESCRIPTION"></label>
+                            <textarea class="form-control" id="description" ng-model="warehouse.Description"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label" for="condition" translate="CONDITION"></label>
+                            <select class="form-control" id="condition" ng-model="warehouse.Fk_Condition" ng-options="item as item.ConditionName for item in condition"></select>
+                        </div>
+                    </div> 
+                    <div class="col-md-2" ng-repeat="item in warehouseTypes">
+                        <div class="checkbox-inline">
+                            <label for="invoiceChk"><input type="checkbox" ng-model="typeWarehouse[item.TypeName]" ng-click="toggleType(item.TypeName)" />{{item.TypeName}}</label>
+                        </div>
+                    </div>                  
+                </div>                    
+
+                <div class="row">
+                    <div class="text-center">
+                        <button type="button" class="btn btn-info" ng-click="addWarehouse()"><i class="fa fa-plus-square"></i> <span translate="SAVE"></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>     
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span translate="COURIERLIST"></span>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-success btn-sm" ng-click="openModalCourier()"><i class="fa fa-plus-circle"></i> <span translate="ADDOTHER"></span></button>
+                    <button type="button" class="btn btn-success btn-sm" ng-click="openModalCourierSimple()"><i class="fa fa-plus-circle"></i> <span translate="ADDCOURIER"></span></button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="content table-responsive table-full-width">
+                        <table ng-show="loaded == true" class="table table-hover table-striped">
+                            <thead>
+                                <tr>                                    
+                                    <th translate="PIECETYPE"></th>
+                                    <th translate="LENGTH"></th>
+                                    <th translate="WIDTH"></th>
+                                    <th translate="HEIGHT"></th>
+                                    <th translate="WEIGHT"></th>
+                                    <th translate="UNITS"></th>
+                                    <th translate="TRACKING_NUMBER"></th>
+                                    <th translate="DELIVERY_BY"></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr ng-repeat="item in courierList">                                    
+                                    <td>{{item.Fk_UnitType.Unit}}</td>
+                                    <td>{{item.length}}</td>
+                                    <td>{{item.width}}</td>
+                                    <td>{{item.height}}</td>
+                                    <td>{{item.weight}}</td>
+                                    <td>{{item.Units}}</td>
+                                    <td>{{item.trackingNumber}}</td>
+                                    <td>{{item.Fk_DeliveryCompany.CompanyName}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning btn-xs" ng-click="editCourier($index)"><i class="fa fa-pencil"></i></button>
+                                        <button type="button" class="btn btn-danger btn-xs" ng-click="removeItem($index)"><i class="fa fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>          
+        
+    </form>
+    @*Modal SearchResults*@
+    <div id="searcResultModal" class="modal fade" data-backdrop="static"  data-keyboard="false" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" translate="SEARCHRESULTS"></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="content table-responsive table-full-width">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th translate="COMPANYNAME"></th>
+                                    <th translate="CITY"></th>
+                                    <th translate="STATE"></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr ng-repeat="item in companyList">
+                                    <td>{{item.CompanyName}}</td>
+                                    <td>{{item.City}}</td>
+                                    <td>{{item.State}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success btn-xs" ng-click="selectCompany($index)"><i class="fa fa-check-circle"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    
+    
+    @*Modal search word*@
+    <div id="searchModal" class="modal fade" data-backdrop="static"  data-keyboard="false" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">                    
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" translate="ACCOUNTLOOKUP"></h4>                    
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="searchAccountKeyword" class="control-label" translate="KEYWORD"></label>
+                                <input id="searchAccountKeyword" type="text" class="form-control" ng-model="keyword" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span translate="ADVICETEXT"></span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" ng-click="openModal('createAccount')"><i class="fa fa-user"></i> <span translate="CREATEACCOUNT"></span></button> 
+                        <button type="button" class="btn btn-primary" ng-click="searchKeyword()"><i class="fa fa-search"></i> <span translate="SEARCH"></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*Create courier*@
+    <div id="ModalCourierSimple" class="modal fade" data-backdrop="static"  data-keyboard="false" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" translate="CORRIER_MODAL_TITLE"></h4><h4>@ViewBag.CodeNumber</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <span translate="COURIERINFO"></span>
+                            </div>
+                            <div class="panel-body">                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="LengthModal" class="control-label" translate="LENGTH"></label>
+                                            <div class="input-group">
+                                                <input type="number" min="1" id="LengthModal" ng-model="courier.length" class="form-control" placeholder="Value in Inches" autofocus required />
+                                                <span class="input-group-addon" id="MeasureLength">In</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="WidthModal" class="control-label" translate="WIDTH"></label>
+                                            <div class="input-group">
+                                                <input type="number" min="1" id="WidthModal" ng-model="courier.width" class="form-control" placeholder="Value in Inches" required />
+                                                <span class="input-group-addon" id="MeasureWidth">In</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="HeigthModal" class="control-label" translate="HEIGHT"></label>
+                                            <div class="input-group">
+                                                <input type="number" min="1" id="HeigthModal" ng-model="courier.height" class="form-control" placeholder="Value in Inches" required />
+                                                <span class="input-group-addon" id="MeasureHeigth">In</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="WeightModal" class="control-label" translate="WEIGHT"></label>
+                                            <div class="input-group">
+                                                <input type="number" min="1" id="WeightModal" ng-model="courier.weight" class="form-control" placeholder="Value in Pounds" required />
+                                                <span class="input-group-addon" id="MeasureWeight">Lbs</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="TrackingNumberModal" class="control-label" translate="TRACKING_NUMBER"></label>
+                                            <input type="text" id="TrackingNumberModal" ng-model="courier.trackingNumber" class="form-control" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="DeliveryCompanyModal" class="control-label" translate="DELIVERY_BY"></label>
+                                            @*<selectize config='myConfig' options='myOptions' ng-model="myModel"></selectize>*@
+                                            <select class="form-control" ng-model="courier.Fk_DeliveryCompany" ng-options="item as item.CompanyName for item in deliveryCompanies"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-warning" ng-show="editBtnModal" ng-click="clearBtn()"><i class="fa fa-pencil"></i> <span translate="EDIT"></span></button>
+                                        <button type="button" class="btn btn-success" ng-show="addBtnModal" ng-click="addCourier()"><i class="fa fa-plus-circle"></i> <span translate="ADD"></span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="content table-responsive table-full-width">
+                            <table ng-show="loaded == true" class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th translate="LENGTH"></th>
+                                        <th translate="WIDTH"></th>
+                                        <th translate="HEIGHT"></th>
+                                        <th translate="WEIGHT"></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr ng-repeat="item in courierList">
+                                        <td>{{item.length}}</td>
+                                        <td>{{item.width}}</td>
+                                        <td>{{item.height}}</td>
+                                        <td>{{item.weight}}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning btn-xs" ng-click="editCourier($index)"><i class="fa fa-pencil"></i></button>
+                                            <button type="button" class="btn btn-danger btn-xs" ng-click="removeItem($index)"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button ng-click="finishCourierModal()" type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-check-circle"></i> <span translate="FINISH"></span></button>
+                            @*<button ng-click="translate('es')" type="button" class="btn btn-primary">Change Language</button>*@
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    @*Create Account  Modal*@
+    <div id="CreateAccountModal" class="modal fade" data-backdrop="static"  data-keyboard="false" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" translate="CREATEACCOUNT"></h4>
+                </div>
+                <form name="product" method="post" ng-submit="addAccount()">
+                    @Html.AntiForgeryToken()                    
+                    
+                    <div class="modal-body">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <span translate="ACCOUNTINFO"></span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="companyModal" class="control-label" translate="COMPANY"></label>
+                                            <input id="companyModal" ng-model="account.companyName" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="adressModal" class="control-label" translate="ADRESS"></label>
+                                            <input id="adressModal" ng-model="account.adress" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="cityModal" class="control-label" translate="CITY"></label>
+                                            <input id="cityModal" ng-model="account.city" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="stateModal" class="control-label" translate="STATE"></label>
+                                            <input id="stateModal" ng-model="account.state" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="zipCodeModal" class="control-label" translate="ZIPCODE"></label>
+                                            <input id="zipCodeModal" type="number" ng-model="account.zipcode" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="countryModal" class="control-label" translate="COUNTRY"></label>
+                                            <select class="form-control" ng-model="account.fk_CountryID" ng-options="item as item.CountryName for item in countriesList"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="phoneModal" class="control-label" translate="PHONE"></label>
+                                            <input id="phoneModal" type="tel" ng-model="account.phone" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="faxModal" class="control-label" translate="FAX"></label>
+                                            <input id="faxModal" type="tel" ng-model="account.fax" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="mobilModal" class="control-label" translate="MOBIL"></label>
+                                            <input id="mobilModal" type="tel" ng-model="account.mobile" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="emailModal" class="control-label" translate="EMAIL"></label>
+                                            <input id="emailModal" type="email" ng-model="account.email" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="contactModal" class="control-label" translate="CONTACT"></label>
+                                            <input id="contactModal" type="text" ng-model="account.contactName" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="agentModal" class="control-label" translate="AGENT"></label>
+                                            <input id="agentModal" type="text" ng-model="account.fk_Agent" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <span translate="ACCOUNTCLASSIFICATION"></span>
+                            </div>
+                            <div class="panel-body"> 
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="checkbox-inline" ng-repeat="item in classificationList">
+                                                <label><input type="checkbox" ng-model="classificationAccount[item.Classification]" ng-click="toggleSelection(item.Classification)" /> {{item.Classification}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                    
+                       <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <span translate="ACCOUNTNOTIFICATION"></span>
+                            </div>
+                            <div class="panel-body"> 
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="checkbox-inline" ng-repeat="item in notificationList">
+                                                <label><input type="checkbox" ng-model="notificationAccount[item.Notification]" ng-click="toggleNotification(item.Notification)" /> {{item.Notification}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i> <span translate="SAVEACCOUNT"></span></button>                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @*Initialize modal*@
+    <div id="ModalCourier" class="modal fade" data-backdrop="static"  data-keyboard="false" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" translate="CORRIER_MODAL_TITLE"></h4><h4>@ViewBag.CodeNumber</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <span translate="COURIERINFO"></span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="control-label" translate="PIECES" for="piecesModal"></label>
+                                        <input type="number" id="piecesModal" ng-model="courier.pieces" class="form-control" min="1" value="1" />
+                                    </div>                                    
+                                    <div class="col-md-6">
+                                        <label class="control-label" translate="PIECETYPE" for="unitType"></label>
+                                        <select class="form-control" ng-model="courier.Fk_UnitType" ng-options="item as item.Unit for item in unitType"></select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="LengthModal" class="control-label" translate="LENGTH"></label>
+                                            <div class="input-group">
+                                                <input type="number" min="1" id="LengthModal" ng-model="courier.length" class="form-control" placeholder="Value in Inches" autofocus required />
+                                                <span class="input-group-addon" id="MeasureLength">In</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="WidthModal" class="control-label" translate="WIDTH"></label>
+                                            <div class="input-group">
+                                                <input type="number" min="1" id="WidthModal" ng-model="courier.width" class="form-control" placeholder="Value in Inches" required />
+                                                <span class="input-group-addon" id="MeasureWidth">In</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="HeigthModal" class="control-label" translate="HEIGHT"></label>
+                                            <div class="input-group">
+                                                <input type="number" min="1" id="HeigthModal" ng-model="courier.height" class="form-control" placeholder="Value in Inches" required />
+                                                <span class="input-group-addon" id="MeasureHeigth">In</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="WeightModal" class="control-label" translate="WEIGHT"></label>
+                                            <div class="input-group">
+                                                <input type="number" min="1" id="WeightModal" ng-model="courier.weight" class="form-control" placeholder="Value in Pounds" required />
+                                                <span class="input-group-addon" id="MeasureWeight">Lbs</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="control-label" translate="UNITS" for="unitModal"></label>
+                                        <input type="number" id="unitModal" ng-model="courier.Units" class="form-control" min="1" value="1" />
+                                    </div>                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="DeliveryCompanyModal" class="control-label" translate="DELIVERY_BY"></label>
+                                            @*<selectize config='myConfig' options='myOptions' ng-model="myModel"></selectize>*@
+                                            <select class="form-control" ng-model="courier.Fk_DeliveryCompany" ng-options="item as item.CompanyName for item in deliveryCompanies"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="TrackingNumberModal" class="control-label" translate="TRACKING_NUMBER"></label>
+                                                <input type="text" id="TrackingNumberModal" ng-model="courier.trackingNumber" class="form-control" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-warning" ng-show="editBtnModal" ng-click="clearBtn()"><i class="fa fa-pencil"></i> <span translate="EDIT"></span></button>
+                                        <button type="button" class="btn btn-success" ng-show="addBtnModal" ng-click="addCourier()"><i class="fa fa-plus-circle"></i> <span translate="ADD"></span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="content table-responsive table-full-width">
+                            <table ng-show="loaded == true" class="table table-hover table-striped">
+                                <thead>
+                                    <tr>                                        
+                                        <th translate="PIECETYPE"></th>
+                                        <th translate="LENGTH"></th>
+                                        <th translate="WIDTH"></th>
+                                        <th translate="HEIGHT"></th>
+                                        <th translate="WEIGHT"></th>
+                                        <th translate="UNITS"></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr ng-repeat="item in courierList">                                       
+                                        <td>{{item.Fk_UnitType.Unit}}</td>
+                                        <td>{{item.length}}</td>
+                                        <td>{{item.width}}</td>
+                                        <td>{{item.height}}</td>
+                                        <td>{{item.weight}}</td>
+                                        <td>{{item.Units}}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning btn-xs" ng-click="editCourier($index)"><i class="fa fa-pencil"></i></button>
+                                            <button type="button" class="btn btn-danger btn-xs" ng-click="removeItem($index)"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button ng-click="finishCourierModal()" type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-check-circle"></i> <span translate="FINISH"></span></button>
+                            @*<button ng-click="translate('es')" type="button" class="btn btn-primary">Change Language</button>*@
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+
+

@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CargoDBModelStoreContainer" CdmEntityContainer="CargoDBEntities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="CargoDBModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccountClasification">
+      <EntityTypeMapping TypeName="CargoDBModel.AccountClasification">
+        <MappingFragment StoreEntitySet="AccountClasification">
+          <ScalarProperty Name="AccountClasificationID" ColumnName="AccountClasificationID" />
+          <ScalarProperty Name="ClasificationName" ColumnName="ClasificationName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccountClasificationRelation">
+      <EntityTypeMapping TypeName="CargoDBModel.AccountClasificationRelation">
+        <MappingFragment StoreEntitySet="AccountClasificationRelation">
+          <ScalarProperty Name="AccountClasificationID" ColumnName="AccountClasificationID" />
+          <ScalarProperty Name="Fk_AccountID" ColumnName="Fk_AccountID" />
+          <ScalarProperty Name="Fk_ClasificationID" ColumnName="Fk_ClasificationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="CargoDBModel.AspNetRoles">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="CargoDBModel.AspNetUserClaims">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="CargoDBModel.AspNetUserLogins">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="CargoDBModel.AspNetUsers">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Branch">
+      <EntityTypeMapping TypeName="CargoDBModel.Branch">
+        <MappingFragment StoreEntitySet="Branch">
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comment">
+      <EntityTypeMapping TypeName="CargoDBModel.Comment">
+        <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+          <ScalarProperty Name="Fk_Post" ColumnName="Fk_Post" />
+          <ScalarProperty Name="Fk_User" ColumnName="Fk_User" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="CommentMessage" ColumnName="CommentMessage" />
+          <ScalarProperty Name="FileUrl" ColumnName="FileUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CompanyAccount">
+      <EntityTypeMapping TypeName="CargoDBModel.CompanyAccount">
+        <MappingFragment StoreEntitySet="CompanyAccount">
+          <ScalarProperty Name="CompanyAccountID" ColumnName="CompanyAccountID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="Fk_CountryID" ColumnName="Fk_CountryID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+          <ScalarProperty Name="Fk_Agent" ColumnName="Fk_Agent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Condition">
+      <EntityTypeMapping TypeName="CargoDBModel.Condition">
+        <MappingFragment StoreEntitySet="Condition">
+          <ScalarProperty Name="ConditionID" ColumnName="ConditionID" />
+          <ScalarProperty Name="ConditionName" ColumnName="ConditionName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Country">
+      <EntityTypeMapping TypeName="CargoDBModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Courier">
+      <EntityTypeMapping TypeName="CargoDBModel.Courier">
+        <MappingFragment StoreEntitySet="Courier">
+          <ScalarProperty Name="CourierID" ColumnName="CourierID" />
+          <ScalarProperty Name="Fk_WarehouseID" ColumnName="Fk_WarehouseID" />
+          <ScalarProperty Name="Length" ColumnName="Length" />
+          <ScalarProperty Name="Width" ColumnName="Width" />
+          <ScalarProperty Name="Height" ColumnName="Height" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="TrackingNumber" ColumnName="TrackingNumber" />
+          <ScalarProperty Name="Fk_DeliveryCompany" ColumnName="Fk_DeliveryCompany" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="LastModificationDate" ColumnName="LastModificationDate" />
+          <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+          <ScalarProperty Name="Units" ColumnName="Units" />
+          <ScalarProperty Name="Fk_UnitType" ColumnName="Fk_UnitType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CurrentWarehouseCodeNumber">
+      <EntityTypeMapping TypeName="CargoDBModel.CurrentWarehouseCodeNumber">
+        <MappingFragment StoreEntitySet="CurrentWarehouseCodeNumber">
+          <ScalarProperty Name="WarehHouseID" ColumnName="WarehHouseID" />
+          <ScalarProperty Name="WarehouseCodeNumber" ColumnName="WarehouseCodeNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeliveryCompany">
+      <EntityTypeMapping TypeName="CargoDBModel.DeliveryCompany">
+        <MappingFragment StoreEntitySet="DeliveryCompany">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Destination">
+      <EntityTypeMapping TypeName="CargoDBModel.Destination">
+        <MappingFragment StoreEntitySet="Destination">
+          <ScalarProperty Name="DestinationId" ColumnName="DestinationId" />
+          <ScalarProperty Name="DestinationName" ColumnName="DestinationName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notification">
+      <EntityTypeMapping TypeName="CargoDBModel.Notification">
+        <MappingFragment StoreEntitySet="Notification">
+          <ScalarProperty Name="NotificationID" ColumnName="NotificationID" />
+          <ScalarProperty Name="NotificationName" ColumnName="NotificationName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NotificationAccountRelation">
+      <EntityTypeMapping TypeName="CargoDBModel.NotificationAccountRelation">
+        <MappingFragment StoreEntitySet="NotificationAccountRelation">
+          <ScalarProperty Name="NotificationAccountRelation1" ColumnName="NotificationAccountRelation" />
+          <ScalarProperty Name="Fk_Account" ColumnName="Fk_Account" />
+          <ScalarProperty Name="Fk_Notification" ColumnName="Fk_Notification" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Origin">
+      <EntityTypeMapping TypeName="CargoDBModel.Origin">
+        <MappingFragment StoreEntitySet="Origin">
+          <ScalarProperty Name="OriginId" ColumnName="OriginId" />
+          <ScalarProperty Name="OriginName" ColumnName="OriginName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Post">
+      <EntityTypeMapping TypeName="CargoDBModel.Post">
+        <MappingFragment StoreEntitySet="Post">
+          <ScalarProperty Name="PostID" ColumnName="PostID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="PubDate" ColumnName="PubDate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PostUser">
+      <EntityTypeMapping TypeName="CargoDBModel.PostUser">
+        <MappingFragment StoreEntitySet="PostUser">
+          <ScalarProperty Name="PostUserID" ColumnName="PostUserID" />
+          <ScalarProperty Name="Fk_Post" ColumnName="Fk_Post" />
+          <ScalarProperty Name="Fk_User" ColumnName="Fk_User" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UnitType">
+      <EntityTypeMapping TypeName="CargoDBModel.UnitType">
+        <MappingFragment StoreEntitySet="UnitType">
+          <ScalarProperty Name="UnitTypeId" ColumnName="UnitTypeId" />
+          <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Warehouse">
+      <EntityTypeMapping TypeName="CargoDBModel.Warehouse">
+        <MappingFragment StoreEntitySet="Warehouse">
+          <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+          <ScalarProperty Name="NumberCode" ColumnName="NumberCode" />
+          <ScalarProperty Name="Fk_BranchID" ColumnName="Fk_BranchID" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="Fk_ShipperID" ColumnName="Fk_ShipperID" />
+          <ScalarProperty Name="Fk_Consignee" ColumnName="Fk_Consignee" />
+          <ScalarProperty Name="Fk_Agent" ColumnName="Fk_Agent" />
+          <ScalarProperty Name="Fk_DeliveryCompany" ColumnName="Fk_DeliveryCompany" />
+          <ScalarProperty Name="Fk_Condition" ColumnName="Fk_Condition" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Fk_Origin" ColumnName="Fk_Origin" />
+          <ScalarProperty Name="Fk_Destination" ColumnName="Fk_Destination" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WarehouseTypeRelation">
+      <EntityTypeMapping TypeName="CargoDBModel.WarehouseTypeRelation">
+        <MappingFragment StoreEntitySet="WarehouseTypeRelation">
+          <ScalarProperty Name="WarehouseTypeRelationId" ColumnName="WarehouseTypeRelationId" />
+          <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WarehouseTypes">
+      <EntityTypeMapping TypeName="CargoDBModel.WarehouseTypes">
+        <MappingFragment StoreEntitySet="WarehouseTypes">
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="CargoDBModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e254d7b52e4f41e4a44baeb2ae97823c" Name="Diagram1" ZoomLevel="29">
+        <EntityTypeShape EntityType="CargoDBModel.C__MigrationHistory" Width="1.5" PointX="8.75" PointY="12.25" />
+        <EntityTypeShape EntityType="CargoDBModel.AccountClasification" Width="1.5" PointX="3" PointY="3.25" />
+        <EntityTypeShape EntityType="CargoDBModel.AccountClasificationRelation" Width="1.5" PointX="5.25" PointY="4.125" />
+        <EntityTypeShape EntityType="CargoDBModel.AspNetRole" Width="1.5" PointX="10.75" PointY="14.875" />
+        <EntityTypeShape EntityType="CargoDBModel.AspNetUserClaim" Width="1.5" PointX="15.25" PointY="19.25" />
+        <EntityTypeShape EntityType="CargoDBModel.AspNetUserLogin" Width="1.5" PointX="15.25" PointY="13.375" />
+        <EntityTypeShape EntityType="CargoDBModel.AspNetUser" Width="1.5" PointX="13" PointY="13.25" />
+        <EntityTypeShape EntityType="CargoDBModel.Branch" Width="1.5" PointX="6" PointY="14.75" />
+        <EntityTypeShape EntityType="CargoDBModel.Comment" Width="1.5" PointX="18.25" PointY="14.375" />
+        <EntityTypeShape EntityType="CargoDBModel.CompanyAccount" Width="1.5" PointX="3" PointY="5.75" />
+        <EntityTypeShape EntityType="CargoDBModel.Condition" Width="1.5" PointX="6" PointY="10.125" />
+        <EntityTypeShape EntityType="CargoDBModel.Country" Width="1.5" PointX="0.75" PointY="7.25" />
+        <EntityTypeShape EntityType="CargoDBModel.Courier" Width="1.5" PointX="10.5" PointY="6" />
+        <EntityTypeShape EntityType="CargoDBModel.CurrentWarehouseCodeNumber" Width="1.5" PointX="12.75" PointY="10.25" />
+        <EntityTypeShape EntityType="CargoDBModel.DeliveryCompany" Width="1.5" PointX="8.25" PointY="2.125" />
+        <EntityTypeShape EntityType="CargoDBModel.Destination" Width="1.5" PointX="6" PointY="12.5" />
+        <EntityTypeShape EntityType="CargoDBModel.Notification" Width="1.5" PointX="3" PointY="11.25" />
+        <EntityTypeShape EntityType="CargoDBModel.NotificationAccountRelation" Width="1.5" PointX="5.25" PointY="7.125" />
+        <EntityTypeShape EntityType="CargoDBModel.Origin" Width="1.5" PointX="6" PointY="0.75" />
+        <EntityTypeShape EntityType="CargoDBModel.Post" Width="1.5" PointX="16" PointY="10.625" />
+        <EntityTypeShape EntityType="CargoDBModel.sysdiagram" Width="1.5" PointX="13.75" PointY="1.25" />
+        <EntityTypeShape EntityType="CargoDBModel.UnitType" Width="1.5" PointX="0.75" PointY="14.25" />
+        <EntityTypeShape EntityType="CargoDBModel.Warehouse" Width="1.5" PointX="8.25" PointY="5.5" />
+        <EntityTypeShape EntityType="CargoDBModel.WarehouseTypeRelation" Width="1.5" PointX="13.5" PointY="7.125" />
+        <EntityTypeShape EntityType="CargoDBModel.WarehouseType" Width="1.5" PointX="11.25" PointY="3.25" />
+        <AssociationConnector Association="CargoDBModel.FK_AccountClasificationRelation_AccountClasification1" />
+        <AssociationConnector Association="CargoDBModel.FK_AccountClasificationRelation_CompanyAccount1" />
+        <AssociationConnector Association="CargoDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="CargoDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="CargoDBModel.FK_Comment_AspNetUsers" />
+        <AssociationConnector Association="CargoDBModel.FK_Warehouse_Branch" />
+        <AssociationConnector Association="CargoDBModel.FK_Comment_Post" />
+        <AssociationConnector Association="CargoDBModel.FK_CompanyAccount_Country" />
+        <AssociationConnector Association="CargoDBModel.FK_NotificationAccountRelation_CompanyAccount" />
+        <AssociationConnector Association="CargoDBModel.FK_Warehouse_CompanyAccount" />
+        <AssociationConnector Association="CargoDBModel.FK_Warehouse_CompanyAccount1" />
+        <AssociationConnector Association="CargoDBModel.FK_Warehouse_CompanyAccount2" />
+        <AssociationConnector Association="CargoDBModel.FK_Warehouse_Condition" />
+        <AssociationConnector Association="CargoDBModel.FK_Courier_DeliveryCompany" />
+        <AssociationConnector Association="CargoDBModel.FK_Courier_Warehouse" />
+        <AssociationConnector Association="CargoDBModel.FK_Warehouse_Destination" />
+        <AssociationConnector Association="CargoDBModel.FK_NotificationAccountRelation_Notification" />
+        <AssociationConnector Association="CargoDBModel.FK_Warehouse_Origin" />
+        <AssociationConnector Association="CargoDBModel.FK_WarehouseTypeRelation_Warehouse" />
+        <AssociationConnector Association="CargoDBModel.FK_WarehouseTypeRelation_WarehouseTypes" />
+        <AssociationConnector Association="CargoDBModel.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

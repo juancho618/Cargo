@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div ng-controller="blogController">
+    <h2 class="pull-left">Blog</h2>
+
+    <div class="pull-right">
+        <button type="button" class="btn btn-success btn-sm" ng-click="createBlog()">
+            <i class="fa fa-plus"></i> Create Entry
+        </button>
+    </div>
+    <div class="clearfix"></div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-md-12" ng-repeat="item in postList">
+            <h3>
+                <a href="#" ng-click="viewPost(item.id)">
+                    {{item.title}}
+                </a>
+            </h3>
+            <p>
+                {{item.description}}
+            </p>
+            <div>
+                <span class="badge">
+                    <i class="fa fa-calendar-o"></i> Posted {{item.date}}
+                </span>
+                
+                <div class="pull-right">
+                    <span class="label label-info">category 1</span>
+                    <span class="label label-success">category 2</span>
+
+                    <button type="button" class="btn btn-success btn-sm" ng-click="addColModal(item.id)">
+                        <i class="fa fa-user-plus"></i> Add user
+                    </button>
+                </div>
+            </div>
+            <hr>
+
+            @*<div class="thumbnail">
+                <div>{{item.date}}</div>
+                <div class="caption">
+                    <h3>{{item.title}}</h3>
+                    <p>{{item.description}}</p>
+                    <p><a ng-click="viewPost(item.id)" class="btn btn-primary" role="button">Details</a> </p>
+                </div>
+            </div>*@
+        </div>
+    </div>
+
+
+    @*Modal Create Blog*@
+    <div id="createBlogModal" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Create new entry</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label" for="postTitle">Title</label>
+                        <input type="text" id="postTitle" ng-model="post.Title" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postDescription" class="control-label">Description</label>
+                        <textarea id="postDescription" class="form-control" ng-model="post.Description"></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-times"></i> Cancel
+                    </button>
+
+                    <button type="button" class="btn btn-success" ng-click="addPost()">
+                        <i class="fa fa-check"></i> Save
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    @* Modal Add user *@
+    <div id="addUserModal" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"> Add a new colaborator</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="userList" class="control-label" ></label>
+                        <select class="form-control" id="userList" ng-model="colaborator.userList" ng-options="item as item.userName for item in userList"></select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" ng-click="addColaborator()">
+                        <i class="fa fa-plus-circle"></i>ADD
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
