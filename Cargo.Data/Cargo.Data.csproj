@@ -149,10 +149,14 @@
     <Compile Include="Mappings\MapperConfigurationFromModel.cs" />
     <Compile Include="Mappings\MapperConfigurationFromViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Blog\CommentRepository.cs" />
+    <Compile Include="Repository\Blog\PostRepository.cs" />
     <Compile Include="Repository\Parametrization\BranchRepository.cs" />
     <Compile Include="Repository\Parametrization\CountryRepository.cs" />
+    <Compile Include="Repository\Parametrization\NotificationRepository.cs" />
     <Compile Include="Repository\Parametrization\OriginRepository.cs" />
     <Compile Include="Repository\Parametrization\UnitTypeRepository.cs" />
+    <Compile Include="Repository\Users\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Entities\CargosEntities.edmx">

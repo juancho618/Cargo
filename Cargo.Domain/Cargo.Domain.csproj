@@ -43,10 +43,14 @@
     <Compile Include="Helpers\IDGenerators.cs" />
     <Compile Include="Helpers\JsonResultBody.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Blog\CommentsViewModel.cs" />
+    <Compile Include="ViewModels\Blog\PostViewModel.cs" />
     <Compile Include="ViewModels\Parametrizacion\BranchViewModel.cs" />
     <Compile Include="ViewModels\Parametrizacion\CountryViewModel.cs" />
+    <Compile Include="ViewModels\Parametrizacion\NotificationViewModel.cs" />
     <Compile Include="ViewModels\Parametrizacion\OriginViewModel.cs" />
     <Compile Include="ViewModels\Parametrizacion\UnitTypeViewModel.cs" />
+    <Compile Include="ViewModels\User\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

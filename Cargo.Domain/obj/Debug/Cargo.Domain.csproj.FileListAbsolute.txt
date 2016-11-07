@@ -10,6 +10,6 @@ C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo.Dom
 C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo.Domain\obj\Debug\Cargo.Domain.pdb
 C:\Users\nesticle8bit\Desktop\Cargo App v2.0\Cargo\Cargo.Domain\bin\Debug\Cargo.Domain.dll
 C:\Users\nesticle8bit\Desktop\Cargo App v2.0\Cargo\Cargo.Domain\bin\Debug\Cargo.Domain.pdb
+C:\Users\nesticle8bit\Desktop\Cargo App v2.0\Cargo\Cargo.Domain\obj\Debug\Cargo.Domain.csprojResolveAssemblyReference.cache
 C:\Users\nesticle8bit\Desktop\Cargo App v2.0\Cargo\Cargo.Domain\obj\Debug\Cargo.Domain.dll
 C:\Users\nesticle8bit\Desktop\Cargo App v2.0\Cargo\Cargo.Domain\obj\Debug\Cargo.Domain.pdb
-C:\Users\nesticle8bit\Desktop\Cargo App v2.0\Cargo\Cargo.Domain\obj\Debug\Cargo.Domain.csprojResolveAssemblyReference.cache
