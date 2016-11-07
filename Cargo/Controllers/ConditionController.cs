@@ -5,27 +5,46 @@ using System.Web;
 using System.Web.Mvc;
 using Cargo.Models;
 using Cargo.Helper;
+using Cargo.Data.Repository.Parametrization;
+using Cargo.Domain.Helpers;
 
 namespace Cargo.Controllers
 {
     public class ConditionController : Controller
     {
-        private CargoDBEntities db = new CargoDBEntities();
-        // GET: Condition
+        ConditionRepository _repository = new ConditionRepository();
+
         public ActionResult Index()
         {
             return View();
         }
 
-        public JsonResult GetAllConditions()
+        public JsonResult GetAll()
         {
-            var list = (from q in db.Conditions
-                        select new
-                        {
-                            ConditionID = q.ConditionID,
-                            ConditionName = q.ConditionName
-                        });
-            return Json(new { data = list.ToList() }, JsonRequestBehavior.AllowGet);
+            var response = new JsonResultBody();
+            response.Status = System.Net.HttpStatusCode.OK;
+
+            try
+            {
+                var data = _repository.GetAll();
+                response.Data = Mapper.Map<IEnumerable<Country>, IEnumerable<CountryViewModel>>(data);
+            }
+            catch (DbEntityValidationException ex)
+            {
+                response.Status = System.Net.HttpStatusCode.InternalServerError;
+
+                foreach (DbEntityValidationResult result in ex.EntityValidationErrors)
+                {
+                    response.Errors = (from ve in result.ValidationErrors select ve.ErrorMessage).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Status = System.Net.HttpStatusCode.InternalServerError;
+                response.Errors.Add(ex.Message);
+            }
+
+            return Json(response, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

@@ -79,5 +79,88 @@ namespace Cargo.Controllers
 
             return Json(response);
         }
+
+        [HttpPost]
+        [AjaxValidationAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id, Name")] NotificationViewModel notification)
+        {
+            var response = new JsonResultBody();
+
+            try
+            {
+                response.Data = _repository.Edit(Mapper.Map<NotificationViewModel, Notification>(notification));
+            }
+            catch (DbEntityValidationException ex)
+            {
+                response.Status = System.Net.HttpStatusCode.InternalServerError;
+                foreach (DbEntityValidationResult result in ex.EntityValidationErrors)
+                {
+                    response.Errors = (from ve in result.ValidationErrors select ve.ErrorMessage).ToList();
+                }
+            }
+            catch (Exception exApp)
+            {
+                response.Status = System.Net.HttpStatusCode.InternalServerError;
+                response.Errors.Add(exApp.Message);
+            }
+
+            return Json(response);
+        }
+
+        [HttpPost]
+        [AjaxValidationAntiForgeryToken]
+        public ActionResult ToggleState(string id)
+        {
+            var response = new JsonResultBody();
+
+            try
+            {
+                Notification notification = _repository.GetNotificationById(id);
+                response.Data = _repository.Delete(notification);
+            }
+            catch (DbEntityValidationException ex)
+            {
+                response.Status = System.Net.HttpStatusCode.InternalServerError;
+                foreach (DbEntityValidationResult result in ex.EntityValidationErrors)
+                {
+                    response.Errors = (from ve in result.ValidationErrors select ve.ErrorMessage).ToList();
+                }
+            }
+            catch (Exception exApp)
+            {
+                response.Status = System.Net.HttpStatusCode.InternalServerError;
+                response.Errors.Add(exApp.Message);
+            }
+
+            return Json(response);
+        }
+
+        [HttpPost]
+        [AjaxValidationAntiForgeryToken]
+        public ActionResult Delete(string id)
+        {
+            var response = new JsonResultBody();
+
+            try
+            {
+                Notification notification = _repository.GetNotificationById(id);
+                response.Data = _repository.Delete(notification);
+            }
+            catch (DbEntityValidationException ex)
+            {
+                response.Status = System.Net.HttpStatusCode.InternalServerError;
+                foreach (DbEntityValidationResult result in ex.EntityValidationErrors)
+                {
+                    response.Errors = (from ve in result.ValidationErrors select ve.ErrorMessage).ToList();
+                }
+            }
+            catch (Exception exApp)
+            {
+                response.Status = System.Net.HttpStatusCode.InternalServerError;
+                response.Errors.Add(exApp.Message);
+            }
+
+            return Json(response);
+        }
     }
 }

@@ -152,6 +152,7 @@
     <Compile Include="Repository\Blog\CommentRepository.cs" />
     <Compile Include="Repository\Blog\PostRepository.cs" />
     <Compile Include="Repository\Parametrization\BranchRepository.cs" />
+    <Compile Include="Repository\Parametrization\ConditionRepository.cs" />
     <Compile Include="Repository\Parametrization\CountryRepository.cs" />
     <Compile Include="Repository\Parametrization\NotificationRepository.cs" />
     <Compile Include="Repository\Parametrization\OriginRepository.cs" />

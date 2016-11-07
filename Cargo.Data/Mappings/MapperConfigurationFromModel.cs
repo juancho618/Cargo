@@ -32,6 +32,12 @@ namespace Cargo.Data.Mappings
                 .ForMember(vm => vm.Name, map => map.MapFrom(m => m.BranchName))
                 .ForMember(vm => vm.Active, map => map.MapFrom(m => m.Active))
                 .ForMember(vm => vm.Deleted, map => map.MapFrom(m => m.Deleted));
+
+            CreateMap<Condition, ConditionViewModel>()
+                .ForMember(vm => vm.Id, map => map.MapFrom(m => m.ConditionID))
+                .ForMember(vm => vm.Name, map => map.MapFrom(m => m.ConditionName))
+                .ForMember(vm => vm.Active, map => map.MapFrom(m => m.Active))
+                .ForMember(vm => vm.Deleted, map => map.MapFrom(m => m.Deleted));
             #endregion
         }
     }

@@ -12,6 +12,8 @@ namespace Cargo.Data.Mappings
             CreateMap<UnitTypeViewModel, UnitType>();
             CreateMap<CountryViewModel, Country>();
             CreateMap<OriginViewModel, Origin>();
+            CreateMap<NotificationViewModel, Notification>();
+            CreateMap<ConditionViewModel, Condition>();
             #endregion
         }
     }
