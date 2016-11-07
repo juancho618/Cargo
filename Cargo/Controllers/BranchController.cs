@@ -5,44 +5,163 @@ using System.Web;
 using System.Web.Mvc;
 using Cargo.Models;
 using Cargo.Helper;
+using Cargo.Domain.Helpers;
+using System.Data.Entity.Validation;
+using AutoMapper;
+using Cargo.Data.Repository.Parametrization;
+using Cargo.Data.Entities;
+using Cargo.Domain.ViewModels.Parametrizacion;
 
 namespace Cargo.Controllers
 {
     public class BranchController : Controller
     {
-        private CargoDBEntities db = new CargoDBEntities();
-        // GET: Branch
+        BranchRepository _repository = new BranchRepository();
+
         public ActionResult Index()
         {
             return View();
         }
 
-        public JsonResult GetAllBranches()
+        public JsonResult GetAll()
         {
-            var list = (from q in db.Branches
-                        select new
-                        {
-                            BranchID = q.BranchID,
-                            BranchName = q.BranchName
-                        });
-            return Json(new { data = list.ToList() }, JsonRequestBehavior.AllowGet);
+            var response = new JsonResultBody();
+            response.Status = System.Net.HttpStatusCode.OK;
+
+            try
+            {
+                var data = _repository.GetAll();
+                response.Data = Mapper.Map<IEnumerable<Branch>, IEnumerable<BranchViewModel>>(data);
+            }
+            catch (DbEntityValidationException ex)
+            {
+                response.Status = System.Net.HttpStatusCode.InternalServerError;
+
+                foreach (DbEntityValidationResult result in ex.EntityValidationErrors)
+                {
+                    response.Errors = (from ve in result.ValidationErrors select ve.ErrorMessage).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Status = System.Net.HttpStatusCode.InternalServerError;
+                response.Errors.Add(ex.Message);
+            }
+
+            return Json(response, JsonRequestBehavior.AllowGet);
+        }
+        
+        [HttpPost]
+        public JsonResult Create([Bind(Include = "Id, Name")] BranchViewModel branch)
+        {
+            var response = new JsonResultBody();
+            string id = string.Empty;
+
+            try
+            {
+                var mapped = Mapper.Map<BranchViewModel, Branch>(branch);
+                id = _repository.Save(mapped);
+            }
+            catch (DbEntityValidationException ex)
+            {
+                response.Status = System.Net.HttpStatusCode.InternalServerError;
+                foreach (DbEntityValidationResult result in ex.EntityValidationErrors)
+                {
+                    response.Errors = (from ve in result.ValidationErrors select ve.ErrorMessage).ToList();
+                }
+            }
+            catch (Exception exAplicacion)
+            {
+                response.Status = System.Net.HttpStatusCode.InternalServerError;
+                response.Errors.Add(exAplicacion.Message);
+            }
+
+            response.Data = new { Id = id };
+
+            return Json(response);
         }
 
         [HttpPost]
-        public JsonResult Create([Bind(Include = "BranchID,BranchName")] Branch branch)
+        [AjaxValidationAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id, Name")] BranchViewModel branch)
         {
-            GenerateId generator = new GenerateId();
-            branch.BranchID = generator.generateID();
-            db.Branches.Add(branch);
-            db.SaveChanges();
+            var response = new JsonResultBody();
 
-            var branchObj = new
+            try
             {
-                BranchID = branch.BranchID,
-                BranchName = branch.BranchName
-            };
+                response.Data = _repository.Edit(Mapper.Map<BranchViewModel, Branch>(branch));
+            }
+            catch (DbEntityValidationException ex)
+            {
+                response.Status = System.Net.HttpStatusCode.InternalServerError;
+                foreach (DbEntityValidationResult result in ex.EntityValidationErrors)
+                {
+                    response.Errors = (from ve in result.ValidationErrors select ve.ErrorMessage).ToList();
+                }
+            }
+            catch (Exception exApp)
+            {
+                response.Status = System.Net.HttpStatusCode.InternalServerError;
+                response.Errors.Add(exApp.Message);
+            }
 
-            return Json(new { data = branchObj }, JsonRequestBehavior.AllowGet);
+            return Json(response);
+        }
+
+        [HttpPost]
+        [AjaxValidationAntiForgeryToken]
+        public ActionResult ToggleState(string id)
+        {
+            var response = new JsonResultBody();
+
+            try
+            {
+                Branch country = _repository.GetBranchById(id);
+                response.Data = _repository.Delete(country);
+            }
+            catch (DbEntityValidationException ex)
+            {
+                response.Status = System.Net.HttpStatusCode.InternalServerError;
+                foreach (DbEntityValidationResult result in ex.EntityValidationErrors)
+                {
+                    response.Errors = (from ve in result.ValidationErrors select ve.ErrorMessage).ToList();
+                }
+            }
+            catch (Exception exApp)
+            {
+                response.Status = System.Net.HttpStatusCode.InternalServerError;
+                response.Errors.Add(exApp.Message);
+            }
+
+            return Json(response);
+        }
+
+        [HttpPost]
+        [AjaxValidationAntiForgeryToken]
+        public ActionResult Delete(string id)
+        {
+            var response = new JsonResultBody();
+
+            try
+            {
+                Branch branch = _repository.GetBranchById(id);
+                response.Data = _repository.Delete(branch);
+            }
+            catch (DbEntityValidationException ex)
+            {
+                response.Status = System.Net.HttpStatusCode.InternalServerError;
+                foreach (DbEntityValidationResult result in ex.EntityValidationErrors)
+                {
+                    response.Errors = (from ve in result.ValidationErrors select ve.ErrorMessage).ToList();
+                }
+            }
+            catch (Exception exApp)
+            {
+                response.Status = System.Net.HttpStatusCode.InternalServerError;
+                response.Errors.Add(exApp.Message);
+            }
+
+            return Json(response);
         }
     }
 }

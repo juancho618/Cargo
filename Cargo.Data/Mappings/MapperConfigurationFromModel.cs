@@ -20,6 +20,18 @@ namespace Cargo.Data.Mappings
                 .ForMember(vm => vm.Name, map => map.MapFrom(m => m.CountryName))
                 .ForMember(vm => vm.Active, map => map.MapFrom(m => m.Active))
                 .ForMember(vm => vm.Deleted, map => map.MapFrom(m => m.Deleted));
+
+            CreateMap<Origin, OriginViewModel>()
+                .ForMember(vm => vm.Id, map => map.MapFrom(m => m.OriginId))
+                .ForMember(vm => vm.Name, map => map.MapFrom(m => m.OriginName))
+                .ForMember(vm => vm.Active, map => map.MapFrom(m => m.Active))
+                .ForMember(vm => vm.Deleted, map => map.MapFrom(m => m.Deleted));
+
+            CreateMap<Branch, BranchViewModel>()
+                .ForMember(vm => vm.Id, map => map.MapFrom(m => m.BranchID))
+                .ForMember(vm => vm.Name, map => map.MapFrom(m => m.BranchName))
+                .ForMember(vm => vm.Active, map => map.MapFrom(m => m.Active))
+                .ForMember(vm => vm.Deleted, map => map.MapFrom(m => m.Deleted));
             #endregion
         }
     }

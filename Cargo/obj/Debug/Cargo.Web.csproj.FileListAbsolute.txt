@@ -92,3 +92,4 @@ C:\Users\nesticle8bit\Desktop\Cargo App\cargo\Cargo\obj\Debug\Cargo.pdb
 C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo\obj\Debug\Cargo.Web.csprojResolveAssemblyReference.cache
 C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo\obj\Debug\Cargo.dll
 C:\Users\Juancho\Documents\Visual Studio 2015\Projects\Cargo App\cargo\Cargo\obj\Debug\Cargo.pdb
+C:\Users\nesticle8bit\Desktop\Cargo App v2.0\Cargo\Cargo\obj\Debug\Cargo.Web.csprojResolveAssemblyReference.cache

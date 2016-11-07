@@ -43,7 +43,9 @@
     <Compile Include="Helpers\IDGenerators.cs" />
     <Compile Include="Helpers\JsonResultBody.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Parametrizacion\BranchViewModel.cs" />
     <Compile Include="ViewModels\Parametrizacion\CountryViewModel.cs" />
+    <Compile Include="ViewModels\Parametrizacion\OriginViewModel.cs" />
     <Compile Include="ViewModels\Parametrizacion\UnitTypeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
